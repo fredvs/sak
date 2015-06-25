@@ -1,0 +1,813 @@
+[mainmo.repostatf]
+savedmemoryfiles=8
+ mainfo.sta
+ commitqueryfo.sta
+ optionsfo.sta
+ revertqueryfo.sta
+ lastmessagefo.sta
+ commitmessagefo.sta
+ clonequeryfo.sta
+ form.sta
+mainfo.sta=313
+ [mainfo.panelcontroller]
+ panels=2
+  panel1
+  panel2
+ clients=299
+  [mainfo.dockpanel]
+  splitdir=2
+  useroptions=33570179
+  parent=mainfo.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=19
+  cx=1366
+  cy=683
+  rcx=0
+  rcy=0
+  [tagsfo.grid]
+  propcolwidthref=730
+  width0=159
+  sortdescend0=0
+  width1=217
+  sortdescend1=0
+  width2=88
+  sortdescend2=0
+  width3=124
+  sortdescend3=1
+  width4=103
+  sortdescend4=0
+  [tagsfo]
+  splitdir=0
+  useroptions=16507
+  stackedunder=mainfo
+  parent=
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=88
+  y=177
+  cx=779
+  cy=354
+  rcx=0
+  rcy=0
+  wsize=0
+  active=0
+  visible=0
+  [logfo.grid]
+  propcolwidthref=0
+  width0=36
+  sortdescend0=0
+  sortdescend1=0
+  width2=159
+  sortdescend2=0
+  width3=99
+  sortdescend3=0
+  width4=116
+  sortdescend4=0
+  width5=117
+  sortdescend5=0
+  sortcol=0
+  rowstate=0
+  sorted=1
+  col=1
+  row=-1073741823
+  rowheight=16
+  [logfo]
+  splitdir=0
+  useroptions=16507
+  parent=mainfo.panelcontroller.panel2.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=312
+  cx=505
+  cy=259
+  rcx=0
+  rcy=0
+  [diffwindowfo.tabs]
+  tabsize=114
+  firsttab=0
+  index=0
+  [diffwindowfo]
+  splitdir=0
+  useroptions=16507
+  parent=mainfo.dockpanel
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=273
+  cx=1356
+  cy=410
+  rcx=0
+  rcy=0
+  [gitconsolefo]
+  splitdir=0
+  useroptions=16491
+  parent=mainfo.panelcontroller.panel2.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=574
+  cx=505
+  cy=130
+  rcx=0
+  rcy=0
+  [branchfo.remotegrid]
+  propcolwidthref=161
+  width0=51
+  sortdescend0=0
+  width1=53
+  sortdescend1=0
+  width2=45
+  sortdescend2=0
+  sortdescend3=0
+  sortdescend4=0
+  sortdescend5=0
+  sortdescend6=0
+  width7=14
+  sortdescend7=0
+  width8=13
+  sortdescend8=0
+  rowstate=0
+  [branchfo.localgrid]
+  propcolwidthref=150
+  sortdescend0=0
+  width1=92
+  sortdescend1=0
+  width2=47
+  sortdescend2=0
+  sortdescend3=0
+  sortdescend4=0
+  sortdescend5=0
+  rowstate=0
+  [branchfo.tsplitter1]
+  x=265
+  y=0
+  xprop=0.53069306930693
+  yprop=1
+  [branchfo]
+  splitdir=0
+  useroptions=16507
+  parent=mainfo.panelcontroller.panel2.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=97
+  cx=505
+  cy=212
+  rcx=0
+  rcy=0
+  [remotesfo]
+  splitdir=0
+  useroptions=16491
+  parent=mainfo.panelcontroller.panel2.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=0
+  cx=505
+  cy=94
+  rcx=0
+  rcy=0
+  [remotesfo.grid]
+  propcolwidthref=476
+  width0=99
+  sortdescend0=0
+  width1=167
+  sortdescend1=0
+  width2=182
+  sortdescend2=0
+  [stashfo.stashgrid]
+  propcolwidthref=435
+  width0=120
+  sortdescend0=0
+  width1=309
+  sortdescend1=0
+  [stashfo]
+  splitdir=0
+  useroptions=16507
+  stackedunder=tagsfo
+  parent=
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=100
+  y=100
+  cx=445
+  cy=354
+  rcx=0
+  rcy=0
+  wsize=0
+  active=0
+  visible=0
+  [filesfo]
+  splitdir=0
+  useroptions=16507
+  parent=mainfo.panelcontroller.panel1.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=430
+  y=0
+  cx=926
+  cy=270
+  rcx=0
+  rcy=0
+  [filesfo.filelist.grid]
+  propcolwidthref=720
+  sortdescend0=0
+  sortdescend1=1
+  width2=174
+  sortdescend2=0
+  [dirtreefo]
+  splitdir=0
+  useroptions=16507
+  parent=mainfo.panelcontroller.panel1.container
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=0
+  cx=427
+  cy=270
+  rcx=0
+  rcy=0
+  [mainfo.panelcontroller.panel1]
+  splitdir=1
+  useroptions=32239
+  parent=mainfo.dockpanel
+  visible=1
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=0
+  y=0
+  cx=1356
+  cy=270
+  rcx=0
+  rcy=0
+  children=2
+   filesfo,430,0,926,270
+   dirtreefo,0,0,427,270
+  focusedchild=1
+  [mainfo.panelcontroller.panel2]
+  splitdir=2
+  useroptions=33586671
+  stackedunder=stashfo
+  parent=
+  mdistate=0
+  nx=0
+  ny=0
+  ncx=0
+  ncy=0
+  x=217
+  y=24
+  cx=515
+  cy=704
+  rcx=0
+  rcy=0
+  children=4
+   logfo,0,312,505,259
+   gitconsolefo,0,574,505,130
+   branchfo,0,97,505,212
+   remotesfo,0,0,505,94
+  focusedchild=1
+  wsize=0
+  active=0
+  visible=0
+ [mainfo]
+ stackedunder=
+ x=696
+ y=43
+ cx=482
+ cy=532
+ wsize=4
+ active=1
+ visible=1
+commitqueryfo.sta=19
+ [commitqueryfo.tsplitter1]
+ x=0
+ y=333
+ xprop=1
+ yprop=0.65527950310559
+ [commitqueryfo.tsplitter2]
+ x=410
+ y=0
+ xprop=0.51304347826087
+ yprop=0.99805068226121
+ [commitqueryfo]
+ stackedunder=
+ x=294
+ y=156
+ cx=805
+ cy=542
+ wsize=0
+ active=1
+ visible=1
+optionsfo.sta=9
+ [optionsfo]
+ stackedunder=
+ x=236
+ y=237
+ cx=402
+ cy=274
+ wsize=0
+ active=1
+ visible=1
+revertqueryfo.sta=9
+ [remuntrackqueryfo]
+ stackedunder=
+ x=109
+ y=231
+ cx=343
+ cy=286
+ wsize=0
+ active=1
+ visible=1
+lastmessagefo.sta=9
+ [lastmessagefo]
+ stackedunder=
+ x=212
+ y=250
+ cx=341
+ cy=263
+ wsize=0
+ active=1
+ visible=1
+commitmessagefo.sta=12
+ [commitmessagefo.messageed]
+ value=Merge from FETCH_HEAD.
+ +
+ [commitmessagefo]
+ stackedunder=
+ x=132
+ y=271
+ cx=399
+ cy=185
+ wsize=0
+ active=1
+ visible=1
+clonequeryfo.sta=29
+ [clonequeryfo.cloneurled]
+ value=https://github.com/fredvs/sak
+ history=3
+  https://github.com/fredvs/sak
+  https://gitlab.com/mseuniverse/sak.git
+  
+ [clonequeryfo.clonedired]
+ filenames=1
+  /home/fred/saknew/
+ lastdir=/home/fred/saknew/
+ filehistory=2
+  /home/fred/saknew/
+  /home/fred/sakmartin/
+ filefilterindex=-1
+ filefilter=
+ filecolwidth=174
+ x=0
+ y=0
+ cx=0
+ cy=0
+ [clonequeryfo]
+ stackedunder=
+ x=51
+ y=128
+ cx=587
+ cy=135
+ wsize=0
+ active=1
+ visible=1
+form.sta=362
+ [mainfo.dockpanel]
+ splitdir=2
+ useroptions=33570179
+ parent=mainfo.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=19
+ cx=482
+ cy=537
+ rcx=0
+ rcy=0
+ [tagsfo.grid]
+ propcolwidthref=730
+ width0=159
+ sortdescend0=0
+ width1=217
+ sortdescend1=0
+ width2=88
+ sortdescend2=0
+ width3=124
+ sortdescend3=1
+ width4=103
+ sortdescend4=0
+ [tagsfo]
+ splitdir=0
+ useroptions=16507
+ stackedunder=mainfo.panelcontroller.panel2
+ parent=
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=88
+ y=177
+ cx=779
+ cy=354
+ rcx=0
+ rcy=0
+ wsize=0
+ active=0
+ visible=0
+ [logfo.grid]
+ propcolwidthref=17
+ width0=36
+ sortdescend0=0
+ sortdescend1=0
+ width2=379
+ sortdescend2=0
+ width3=99
+ sortdescend3=0
+ width4=116
+ sortdescend4=0
+ width5=117
+ sortdescend5=0
+ sortcol=0
+ rowstate=50
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+  0 0 0
+ sorted=1
+ col=1
+ row=0
+ rowheight=16
+ [logfo]
+ splitdir=0
+ useroptions=16507
+ parent=mainfo.panelcontroller.panel2.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=323
+ cx=795
+ cy=203
+ rcx=0
+ rcy=0
+ [diffwindowfo.tabs]
+ tabsize=114
+ firsttab=0
+ index=1
+ [diffwindowfo]
+ splitdir=0
+ useroptions=16507
+ parent=mainfo.dockpanel
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=333
+ cx=472
+ cy=204
+ rcx=0
+ rcy=0
+ [gitconsolefo]
+ splitdir=0
+ useroptions=16491
+ parent=mainfo.panelcontroller.panel2.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=529
+ cx=795
+ cy=149
+ rcx=0
+ rcy=0
+ [branchfo.remotegrid]
+ propcolwidthref=297
+ width0=95
+ sortdescend0=0
+ width1=108
+ sortdescend1=0
+ width2=82
+ sortdescend2=0
+ sortdescend3=0
+ sortdescend4=0
+ sortdescend5=0
+ sortdescend6=0
+ width7=25
+ sortdescend7=0
+ width8=24
+ sortdescend8=0
+ rowstate=10
+  0 3
+  1 0
+  1 0
+  1 0
+  1 0
+  1 0
+  1 0
+  0 3
+  1 0
+  1 0
+ [branchfo.localgrid]
+ propcolwidthref=337
+ sortdescend0=0
+ width1=221
+ sortdescend1=0
+ width2=105
+ sortdescend2=0
+ sortdescend3=0
+ sortdescend4=0
+ sortdescend5=0
+ rowstate=3
+  0
+  0
+  0
+ [branchfo.tsplitter1]
+ x=419
+ y=0
+ xprop=0.53069306930693
+ yprop=1
+ [branchfo]
+ splitdir=0
+ useroptions=16507
+ parent=mainfo.panelcontroller.panel2.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=95
+ cx=795
+ cy=225
+ rcx=0
+ rcy=0
+ [remotesfo]
+ splitdir=0
+ useroptions=16491
+ parent=mainfo.panelcontroller.panel2.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=0
+ cx=795
+ cy=92
+ rcx=0
+ rcy=0
+ [remotesfo.grid]
+ propcolwidthref=776
+ width0=161
+ sortdescend0=0
+ width1=384
+ sortdescend1=0
+ width2=297
+ sortdescend2=0
+ [stashfo.stashgrid]
+ propcolwidthref=435
+ width0=120
+ sortdescend0=0
+ width1=309
+ sortdescend1=0
+ [stashfo]
+ splitdir=0
+ useroptions=16507
+ stackedunder=tagsfo
+ parent=
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=100
+ y=100
+ cx=445
+ cy=354
+ rcx=0
+ rcy=0
+ wsize=0
+ active=0
+ visible=0
+ [filesfo]
+ splitdir=0
+ useroptions=16507
+ parent=mainfo.panelcontroller.panel1.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=151
+ y=0
+ cx=321
+ cy=330
+ rcx=0
+ rcy=0
+ [filesfo.filelist.grid]
+ propcolwidthref=115
+ sortdescend0=0
+ sortdescend1=1
+ width2=174
+ sortdescend2=0
+ [dirtreefo]
+ splitdir=0
+ useroptions=16507
+ parent=mainfo.panelcontroller.panel1.container
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=0
+ cx=148
+ cy=330
+ rcx=0
+ rcy=0
+ [mainfo.panelcontroller.panel1]
+ splitdir=1
+ useroptions=32239
+ parent=mainfo.dockpanel
+ visible=1
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=0
+ y=0
+ cx=472
+ cy=330
+ rcx=0
+ rcy=0
+ children=2
+  filesfo,151,0,321,330
+  dirtreefo,0,0,148,330
+ focusedchild=1
+ [mainfo.panelcontroller.panel2]
+ splitdir=2
+ useroptions=33586671
+ stackedunder=mainfo
+ parent=
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=539
+ y=26
+ cx=805
+ cy=678
+ rcx=0
+ rcy=0
+ children=4
+  logfo,0,323,795,203
+  gitconsolefo,0,529,795,149
+  branchfo,0,95,795,225
+  remotesfo,0,0,795,92
+ focusedchild=2
+ wsize=0
+ active=0
+ visible=1
+[mainmo.repoobj]
+activeremote=
+activelocallogbranch=
+activeremotelog=origin
+activeremotelogbranch=master
+commitmessages=4
+ Fixed character in sak_mse example.
+ Synchro with sak_gitHub. (3)
+ Synchro with sak_gitHub. (2)
+ Synchro with sak_gitHub.
+commitmessage=Fixed character in sak_mse example.
+linkedremotebranches=0
+hiddenremotes=0
+hiddenremotebranches=0
+hiddenlocalbranches=0
+localbranchorder=3
+ develop
+ 
+ msemaster
+remotesorder=2
+ origin
+ mseremote
+remotebranchorder=0
+showhiddenbranches=0
+logfiltercommit=
+logfiltercommitter=
+logfilterdatemin=
+logfilterdatemax=
+logfiltermessage=
+remotes=2
+ origin,master
+ msremote,
+diffdir=/home/fred/sakmartin/

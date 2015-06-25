@@ -1,0 +1,486 @@
+object sak_demo: tmainfo
+  visible = False
+  bounds_x = 18
+  bounds_y = 198
+  bounds_cx = 653
+  bounds_cy = 241
+  container.frame.localprops = []
+  container.frame.localprops1 = []
+  container.bounds = (
+    0
+    0
+    653
+    241
+  )
+  statfile = tstatfile1
+  caption = 'Demo of mse with sak'
+  moduleclassname = 'tmainform'
+  object tlabel1: tlabel
+    taborder = 11
+    bounds_x = 384
+    bounds_y = 136
+    bounds_cx = 85
+    bounds_cy = 14
+    caption = 'This is a label'
+    reffontheight = 14
+  end
+  object tbutton1: tbutton
+    taborder = 1
+    bounds_x = 193
+    bounds_y = 19
+    bounds_cx = 92
+    bounds_cy = 21
+    state = [as_localcaption, as_localonexecute]
+    caption = 'Load SAK'
+    onexecute = loadassistive
+  end
+  object tbutton2: tbutton
+    taborder = 2
+    bounds_x = 288
+    bounds_y = 19
+    bounds_cx = 91
+    bounds_cy = 21
+    state = [as_disabled, as_localdisabled, as_localcaption, as_localonexecute]
+    caption = 'Unload SAK'
+    onexecute = unloadassistive
+  end
+  object tstringedit1: tstringedit
+    frame.localprops = []
+    frame.localprops1 = []
+    taborder = 13
+    bounds_x = 320
+    bounds_y = 160
+    bounds_cx = 308
+    value = 'Write something here... Use F12 key to read. '
+    reffontheight = 14
+  end
+  object tbooleanedit1: tbooleanedit
+    frame.caption = 'Take hollyday'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      1
+      87
+      2
+    )
+    taborder = 12
+    bounds_x = 480
+    bounds_y = 135
+    bounds_cx = 100
+    bounds_cy = 16
+  end
+  object tbooleaneditradio1: tbooleaneditradio
+    frame.caption = 'red'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      1
+      24
+      2
+    )
+    taborder = 7
+    bounds_x = 320
+    bounds_y = 87
+    bounds_cx = 37
+    bounds_cy = 16
+  end
+  object tbooleaneditradio2: tbooleaneditradio
+    frame.caption = 'green'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      1
+      40
+      2
+    )
+    taborder = 8
+    bounds_x = 320
+    bounds_y = 111
+    bounds_cx = 53
+    bounds_cy = 16
+  end
+  object tbooleaneditradio3: tbooleaneditradio
+    frame.caption = 'blue'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      1
+      30
+      2
+    )
+    taborder = 9
+    bounds_x = 320
+    bounds_y = 135
+    bounds_cx = 43
+    bounds_cy = 16
+  end
+  object tslider1: tslider
+    frame.localprops = []
+    frame.localprops1 = []
+    taborder = 14
+    bounds_x = 320
+    bounds_y = 200
+    value = 0
+    scrollbar.face.localprops = []
+  end
+  object tmemoedit1: tmemoedit
+    frame.sbhorz.pagesize = 1
+    frame.sbvert.pagesize = 1
+    frame.localprops = [frl_colorclient]
+    frame.localprops1 = []
+    taborder = 10
+    bounds_x = 384
+    bounds_y = 8
+    bounds_cx = 252
+    bounds_cy = 116
+    value = 'The quick brown fox, jumps over the lazy dog... Use F12 key to read all. '
+    reffontheight = 14
+  end
+  object tmainmenuwidget1: tmainmenuwidget
+    optionswidget1 = [ow1_autoscale, ow1_autowidth]
+    frame.levelo = 1
+    frame.leveli = -1
+    frame.caption = 'tmainmenuwidget'
+    frame.localprops = [frl_levelo, frl_leveli]
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      17
+      17
+      0
+    )
+    taborder = 15
+    bounds_x = 529
+    bounds_y = 183
+    bounds_cx = 113
+    bounds_cy = 41
+    menu.popupframetemplate = tframecomp3
+    menu.popupitemframetemplate = tframecomp1
+    menu.popupitemfacetemplate = tfacecomp1
+    menu.popupitemframetemplateactive = tframecomp2
+    menu.popupitemfacetemplateactive = tfacecomp2
+    menu.itemframetemplate = tframecomp1
+    menu.itemfacetemplate = tfacecomp1
+    menu.itemframetemplateactive = tframecomp2
+    menu.itemfacetemplateactive = tfacecomp2
+    menu.menu.submenu.count = 2
+    menu.menu.submenu.items = <    
+      item
+        submenu.count = 3
+        submenu.items = <        
+          item
+            submenu.count = 3
+            submenu.items = <            
+              item
+                caption = 'Open &A'
+                state = [as_localcaption]
+              end            
+              item
+                caption = 'Open &B'
+                state = [as_localcaption]
+              end            
+              item
+                caption = 'Open &C'
+                state = [as_localcaption]
+              end>
+            caption = '&Open'
+            state = [as_localcaption]
+          end        
+          item
+            caption = '&Close'
+            state = [as_localcaption]
+          end        
+          item
+            caption = '&Exit'
+            state = [as_localcaption, as_localonexecute]
+          end>
+        caption = '&File'
+        state = [as_localcaption]
+      end    
+      item
+        submenu.count = 4
+        submenu.items = <        
+          item
+            caption = 'One'
+            state = [as_localcaption]
+          end        
+          item
+            caption = 'Two'
+            state = [as_localcaption]
+          end        
+          item
+            caption = 'Three'
+            state = [as_localcaption]
+          end        
+          item
+            caption = 'Four'
+            state = [as_localcaption]
+          end>
+        caption = 'item&2'
+        state = [as_localcaption]
+      end>
+    menu.menu.font.color = 3100463
+    menu.menu.font.style = [fs_bold]
+    menu.menu.font.name = 'stf_menu'
+    menu.menu.font.localprops = [flp_color, flp_style]
+    menu.menu.fontactive.color = 5189423
+    menu.menu.fontactive.style = [fs_bold]
+    menu.menu.fontactive.name = 'stf_menu'
+    menu.menu.fontactive.localprops = [flp_color]
+  end
+  object demogrid: tstringgrid
+    frame.localprops = [frl_fileft, frl_fitop, frl_firight, frl_fibottom]
+    frame.localprops1 = []
+    taborder = 6
+    bounds_x = 8
+    bounds_y = 96
+    bounds_cx = 293
+    bounds_cy = 134
+    datacols.count = 5
+    datacols.items = <    
+      item
+        datalist.data = (
+          ''
+          ''
+          ''
+          ''
+          ''
+          ''
+        )
+        valuefalse = '0'
+        valuetrue = '1'
+      end    
+      item
+        datalist.data = (
+          ''
+          ''
+          ''
+          ''
+          ''
+          ''
+        )
+        valuefalse = '0'
+        valuetrue = '1'
+      end    
+      item
+        datalist.data = (
+          ''
+          ''
+          ''
+          ''
+          ''
+          ''
+        )
+        valuefalse = '0'
+        valuetrue = '1'
+      end    
+      item
+        datalist.data = (
+          ''
+          ''
+          ''
+          ''
+          ''
+          ''
+        )
+        valuefalse = '0'
+        valuetrue = '1'
+      end    
+      item
+        datalist.data = (
+          ''
+          ''
+          ''
+          ''
+          ''
+          ''
+        )
+        valuefalse = '0'
+        valuetrue = '1'
+      end>
+    fixcols.count = 1
+    fixcols.items = <    
+      item
+        width = 30
+        numstep = 1
+      end>
+    fixrows.count = 1
+    fixrows.items = <    
+      item
+        height = 16
+        numstep = 1
+      end>
+    rowcount = 6
+    datarowheight = 16
+    statpriority = 1
+    reffontheight = 14
+  end
+  object usekeybuffer: tbooleanedit
+    frame.caption = 'Use SAK  Keybuffer'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      1
+      120
+      2
+    )
+    taborder = 5
+    bounds_x = 208
+    bounds_y = 64
+    bounds_cx = 133
+    bounds_cy = 16
+    statfile = tstatfile1
+    onsetvalue = setusekeybuffer
+  end
+  object language: tstringedit
+    frame.caption = 'Language'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      17
+      0
+      0
+    )
+    taborder = 3
+    bounds_x = 8
+    bounds_y = 44
+    bounds_cx = 92
+    bounds_cy = 37
+    statfile = tstatfile1
+    ondataentered = voiceentered
+    reffontheight = 14
+  end
+  object gender: tenumedit
+    frame.caption = 'Gender'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.outerframe = (
+      0
+      17
+      0
+      0
+    )
+    taborder = 4
+    bounds_x = 112
+    bounds_y = 44
+    bounds_cx = 92
+    bounds_cy = 37
+    statfile = tstatfile1
+    optionsedit = [oe_undoonesc, oe_closequery, oe_checkmrcancel, oe_shiftreturn, oe_eatreturn, oe_resetselectonexit, oe_exitoncursor, oe_endonenter, oe_autoselect, oe_autoselectonfirstclick, oe_focusrectonreadonly, oe_notnull]
+    ondataentered = voiceentered
+    dropdown.cols.count = 1
+    dropdown.cols.items = <    
+      item
+        data = (
+          'Male'
+          'Female'
+        )
+      end>
+    value = 0
+    min = 0
+    max = 1
+    reffontheight = 14
+  end
+  object sakitdir: tfilenameedit
+    frame.caption = 'sakit Installdirectory'
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.buttons.count = 1
+    frame.buttons.items = <    
+      item
+        imagenr = 17
+      end>
+    frame.button.imagenr = 17
+    frame.outerframe = (
+      0
+      17
+      0
+      0
+    )
+    bounds_x = 8
+    bounds_y = 2
+    bounds_cx = 180
+    bounds_cy = 37
+    statfile = tstatfile1
+    optionsedit = [oe_undoonesc, oe_closequery, oe_checkmrcancel, oe_shiftreturn, oe_eatreturn, oe_resetselectonexit, oe_exitoncursor, oe_endonenter, oe_autoselect, oe_autoselectonfirstclick, oe_focusrectonreadonly, oe_hintclippedtext]
+    textflags = [tf_noselect, tf_ellipseleft]
+    controller.options = [fdo_directory, fdo_savelastdir]
+    controller.captionopen = 'sakit Installdirectory'
+    reffontheight = 14
+  end
+  object tstatfile1: tstatfile
+    filename = 'status.sta'
+    left = 176
+    top = 128
+  end
+  object tframecomp2: tframecomp
+    template.framewidth = 1
+    template.colorframe = 12549120
+    template.framei_left = 3
+    template.framei_top = 1
+    template.framei_right = 5
+    template.framei_bottom = 1
+    left = 496
+    top = 56
+  end
+  object tframecomp1: tframecomp
+    template.framewidth = 1
+    template.colorframe = 192
+    template.framei_left = 3
+    template.framei_top = 1
+    template.framei_right = 5
+    template.framei_bottom = 1
+    left = 496
+    top = 40
+  end
+  object tfacecomp1: tfacecomp
+    template.fade_pos.count = 4
+    template.fade_pos.items = (
+      0
+      0.1394422310757
+      0.85059760956175
+      1
+    )
+    template.fade_color.count = 4
+    template.fade_color.items = (
+      -1610612731
+      12040119
+      11382189
+      8224125
+    )
+    left = 392
+    top = 40
+  end
+  object tfacecomp2: tfacecomp
+    template.fade_pos.count = 5
+    template.fade_pos.items = (
+      0
+      0.085657370517928
+      0.3605577689243
+      0.85059760956175
+      1
+    )
+    template.fade_color.count = 5
+    template.fade_color.items = (
+      -1610612731
+      12098895
+      13943436
+      11380627
+      8224125
+    )
+    left = 392
+    top = 56
+  end
+  object tframecomp3: tframecomp
+    template.framewidth = 1
+    template.colorframe = 7566335
+    left = 496
+    top = 72
+  end
+end

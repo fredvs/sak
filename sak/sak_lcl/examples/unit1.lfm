@@ -1,0 +1,280 @@
+object MainForm: TMainForm
+  Left = 50
+  Height = 303
+  Top = 288
+  Width = 709
+  Caption = 'sak Speecher Assistive Kit.  Use your keyboard to test it.'
+  ClientHeight = 282
+  ClientWidth = 709
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.5'
+  object Button1: TButton
+    Left = 27
+    Height = 25
+    Top = 80
+    Width = 96
+    Caption = 'Test me'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object memo1: TMemo
+    Left = 144
+    Height = 104
+    Top = 64
+    Width = 190
+    Lines.Strings = (
+      'The quick brown fox, '
+      'jumps over the lazy dog...'
+      'Please, write something here...'
+      'Use F12 key to read all and'
+      'Escape key to stop speaking...'
+    )
+    TabOrder = 5
+  end
+  object CheckBox1: TCheckBox
+    Left = 24
+    Height = 22
+    Top = 144
+    Width = 88
+    Caption = 'Check Test'
+    TabOrder = 2
+  end
+  object RadioButton1: TRadioButton
+    Left = 24
+    Height = 22
+    Top = 184
+    Width = 59
+    Caption = 'Test 1'
+    Checked = True
+    TabOrder = 3
+    TabStop = True
+  end
+  object Stock: TStringGrid
+    Left = 352
+    Height = 136
+    Top = 40
+    Width = 336
+    TabOrder = 8
+    Cells = (
+      9
+      0
+      0
+      'col/size'
+      0
+      1
+      'green'
+      0
+      2
+      'red'
+      0
+      3
+      'yellow'
+      0
+      4
+      'blue'
+      1
+      0
+      'extra'
+      2
+      0
+      'large'
+      3
+      0
+      'medium'
+      4
+      0
+      'small'
+    )
+  end
+  object RadioButton2: TRadioButton
+    Left = 24
+    Height = 22
+    Top = 216
+    Width = 59
+    Caption = 'Test 2'
+    TabOrder = 4
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 18
+    Top = 112
+    Width = 114
+    Alignment = taCenter
+    AutoSize = False
+    ParentColor = False
+  end
+  object Button2: TButton
+    Left = 32
+    Height = 25
+    Top = 8
+    Width = 88
+    Caption = 'Load sak'
+    OnClick = Button2Click
+    TabOrder = 0
+  end
+  object Button3: TButton
+    Left = 32
+    Height = 25
+    Top = 34
+    Width = 88
+    Caption = 'Unload sak'
+    Enabled = False
+    OnClick = Button3Click
+    TabOrder = 12
+  end
+  object Edit1: TEdit
+    Left = 384
+    Height = 25
+    Top = 179
+    Width = 304
+    TabOrder = 9
+    Text = 'Write something here. Use F12 key to read it...'
+  end
+  object Label2: TLabel
+    Left = 344
+    Height = 18
+    Top = 16
+    Width = 344
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'Stringgrid : use arrow keys or enter to speak it...'
+    ParentColor = False
+  end
+  object Button4: TButton
+    Left = 496
+    Height = 25
+    Top = 224
+    Width = 96
+    Caption = 'Other form2'
+    OnClick = Button4Click
+    TabOrder = 10
+  end
+  object Button5: TButton
+    Left = 600
+    Height = 25
+    Top = 223
+    Width = 96
+    Caption = 'Other form3'
+    OnClick = Button5Click
+    TabOrder = 11
+  end
+  object size_: TListBox
+    Left = 144
+    Height = 80
+    Top = 179
+    Width = 88
+    Items.Strings = (
+      'great'
+      'medium'
+      'normal'
+      'little'
+    )
+    ItemHeight = 21
+    ScrollWidth = 72
+    TabOrder = 6
+  end
+  object color_: TComboBox
+    Left = 240
+    Height = 25
+    Top = 184
+    Width = 100
+    ItemHeight = 0
+    ItemIndex = 0
+    Items.Strings = (
+      'Green'
+      'Yellow'
+      'Red'
+      'Blue'
+    )
+    Style = csDropDownList
+    TabOrder = 7
+    Text = 'Green'
+  end
+  object Button6: TButton
+    Left = 264
+    Height = 25
+    Top = 213
+    Width = 96
+    Caption = 'file dialog'
+    OnClick = Button6Click
+    TabOrder = 13
+  end
+  object Button7: TButton
+    Left = 368
+    Height = 25
+    Top = 213
+    Width = 96
+    Caption = 'Save Dialog'
+    OnClick = Button7Click
+    TabOrder = 14
+  end
+  object TrackBar1: TTrackBar
+    Left = 280
+    Height = 25
+    Top = 245
+    Width = 168
+    OnChange = TrackBar1Change
+    Position = 0
+    ScalePos = trRight
+    ShowSelRange = False
+    TickStyle = tsNone
+    TabOrder = 15
+  end
+  object Label3: TLabel
+    Left = 256
+    Height = 18
+    Top = 248
+    Width = 24
+    AutoSize = False
+    Caption = '0'
+    ParentColor = False
+  end
+  object sakit_directory: TEdit
+    Left = 136
+    Height = 25
+    Top = 16
+    Width = 192
+    TabOrder = 16
+  end
+  object Label4: TLabel
+    Left = 171
+    Height = 15
+    Top = 0
+    Width = 88
+    Caption = 'Sakit directory'
+    ParentColor = False
+  end
+  object OpenDialog1: TOpenDialog
+    left = 336
+    top = 152
+  end
+  object SaveDialog1: TSaveDialog
+    left = 288
+    top = 136
+  end
+  object MainMenu1: TMainMenu
+    left = 104
+    top = 176
+    object MenuItem1: TMenuItem
+      Caption = 'File'
+      object MenuItem4: TMenuItem
+        Caption = 'New'
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'Open'
+      end
+      object MenuItem6: TMenuItem
+        Caption = 'Save'
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Edit'
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'About'
+    end
+  end
+end

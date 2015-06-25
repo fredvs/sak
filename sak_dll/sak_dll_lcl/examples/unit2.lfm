@@ -1,0 +1,50 @@
+object Form2: TForm2
+  Left = 148
+  Height = 213
+  Top = 221
+  Width = 225
+  Caption = 'Form2'
+  ClientHeight = 213
+  ClientWidth = 225
+  Position = poScreenCenter
+  LCLVersion = '1.0.8.0'
+  object Memo1: TMemo
+    Left = 16
+    Height = 112
+    Top = 16
+    Width = 192
+    Lines.Strings = (
+      'The quick brown fox,'
+      'jumps over the lazy dog...'
+      ''
+      'Use F12 key to listen...'
+    )
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 72
+    Height = 25
+    Top = 176
+    Width = 75
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object color_: TComboBox
+    Left = 56
+    Height = 27
+    Top = 136
+    Width = 100
+    ItemHeight = 0
+    ItemIndex = 0
+    Items.Strings = (
+      'Green'
+      'Yellow'
+      'Red'
+      'Blue'
+    )
+    Style = csDropDownList
+    TabOrder = 1
+    Text = 'Green'
+  end
+end
