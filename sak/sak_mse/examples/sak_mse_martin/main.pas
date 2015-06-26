@@ -45,7 +45,7 @@ implementation
 uses
  main_mfm, sak_mse;
  
-  function randommoney: string;
+  function randommoney: msestring;
   var
     x: integer;
   begin
