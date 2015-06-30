@@ -1281,7 +1281,16 @@ begin
           13: if (Sender is TButton) then
             else
               espeak_Key('enter');
-          8: espeak_Key('back space');
+          8: begin  /// backspace
+      if (Sender is TMemo) or (Sender is Tedit) then
+    begin
+     //  writeln('before : ' + theword);
+      if length(theword) > 1 then   theword := copy(theword,1,length(theword)-1);
+     //  writeln('after : ' + theword);
+     end;
+          espeak_Key('back space');
+          end;
+
           32: if (Sender is TCheckBox) or (Sender is TButton) then
             else
               espeak_Key('space');

@@ -1135,7 +1135,15 @@ then
         case CheckKey of
 
           13: espeak_Key('enter');
-          8: espeak_Key('back space');
+          8: begin  /// backspace
+      if (CheckObject is TfpgMemo) or (CheckObject is Tfpgedit) then
+    begin
+     //  writeln('before : ' + theword);
+      if length(theword) > 1 then   theword := copy(theword,1,length(theword)-1);
+     //  writeln('after : ' + theword);
+     end;
+          espeak_Key('back space');
+          end;
           32: begin
           if (CheckObject is TfpgCheckBox) or (CheckObject is TfpgRadioButton) or (CheckObject is TfpgComboBox) or
               (CheckObject is TfpgListBox) then
@@ -1307,7 +1315,7 @@ begin
    CheckObject := Sender;
    CheckKeyChar := key;
 
-   if (Sender is TfpgMemo) or (Sender is Tfpgedit) then
+     if (Sender is TfpgMemo) or (Sender is Tfpgedit) then
   Theword := Theword + key;
 
   while (finded = False) and (i < (Length(sak.AssistiveData))) do

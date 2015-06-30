@@ -241,8 +241,18 @@ begin
         Result := 'Enter';  
         end;
     
-      key_Backspace: Result := 'back space';
-      key_Backtab: Result := 'back tab';
+      key_Backspace: 
+begin  /// backspace
+      if (Sender is TMemoedit) or (Sender is Tstringedit) then
+    begin
+     //  writeln('before : ' + theword);
+      if length(theword) > 1 then   theword := copy(theword,1,length(theword)-1);
+     //  writeln('after : ' + theword);
+     end;
+       Result := 'back space';
+          end;
+
+     key_Backtab: Result := 'back tab';
 
       key_Up:
       begin

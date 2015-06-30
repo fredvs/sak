@@ -17,8 +17,8 @@ order14=0
 order15=0
 order16=0
 [projectoptions]
-projectdir=/home/fred/sak/sak/sak_mse/examples/sak_mse_fred
-projectfilename=/home/fred/sak/sak/sak_mse/examples/sak_mse_fred/mse_sak_demo.prj
+projectdir=/home/fred/sak/sak/sak_mse/examples
+projectfilename=/home/fred/sak/sak/sak_mse/examples/mse_sak_demo.prj
 findinfiledialog=39
  [findinfileadialogfo.subdirs]
  value=1
@@ -647,8 +647,8 @@ editpos=26
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 24,0
- 0,13
+ 0,-1073741823
+ 0,6
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -889,7 +889,7 @@ windowlayout=504
  [projecttreefo]
  splitdir=0
  useroptions=16491
- stackedunder=watchfo
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -1109,9 +1109,9 @@ windowlayout=504
  ncx=0
  ncy=0
  x=0
- y=489
+ y=441
  cx=1346
- cy=149
+ cy=197
  rcx=1346
  rcy=638
  [componentstorefo]
