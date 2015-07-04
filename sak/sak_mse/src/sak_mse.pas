@@ -97,9 +97,9 @@ type
   TheMenuInfo: menucellinfoarty;
   TheMenuIndex : integer;
 
-  TheWord: string;  //// use F11 key in memo
-  TheSentence: string;   //// use F10 key in memo
-  TheLastSentence: string;  //// use F10 key in memo
+  TheWord: msestring;  //// use F11 key in memo
+  TheSentence: msestring;   //// use F10 key in memo
+  TheLastSentence: msestring;  //// use F10 key in memo
 
   isentered: boolean;
   
@@ -121,13 +121,18 @@ type
     procedure ontimeritementer(const Sender: TObject);
     procedure ontimerchange(const Sender: TObject);
     function LoadLib: integer;
-    procedure espeak_key(Text: string);
-    function WhatName(Sender: TObject): string;
-    function WhatChar(Sender: TObject; const info: keyeventinfoty): string;
-    function WhatChange(Sender: TObject) : string;
+    procedure espeak_key(Text: msestring);
+    function WhatName(Sender: TObject): msestring;
+    function WhatChar(Sender: TObject; const info: keyeventinfoty): msestring;
+    function WhatChange(Sender: TObject) : msestring;
+    function WhatPos(sender : Tobject; kind : integer) : msestring ;  // kind 0 = all, , 1 = part
+    function WhatDeleted(sender : Tobject) : msestring;
+    function WhatWord(sender : Tobject) : msestring;
+    function WhatLine(sender : Tobject) : msestring;
+
 
   public
-    constructor Create(const agrid: tstringgrid);
+    constructor Create();
       destructor Destroy(); override;
   end;
 
@@ -164,7 +169,7 @@ function WhatFile(const sakini : filenamety = ''; what : integer = 0) : string;
 function SakIsEnabled: boolean;
 
 ////////////////////// Voice Config Procedures ///////////////
-function SAKSetVoice(gender: shortint; language: string ; speed: integer ; pitch: integer ; volume : integer ): integer;
+function SAKSetVoice(gender: shortint; language: msestring ; speed: integer ; pitch: integer ; volume : integer ): integer;
 //// gender : 1 = man, 2 = woman.
 //// language : is the language code, for example :
 //// 'en' for english, 'fr' for french, 'pt' for Portugues, etc...
@@ -174,7 +179,7 @@ function SAKSetVoice(gender: shortint; language: string ; speed: integer ; pitch
 // volume range of 0 to 200. The default is 100. => -1
 
 ///// Start speaking the text
-function SAKSay(Text: string): integer;
+function SAKSay(Text: msestring): integer;
 
 // Cancel current speak.
 function SakCancel: integer;
@@ -187,7 +192,159 @@ uses
   
 /////////////////////////// Capture Assistive Procedures
 
-function TSak.WhatChange(Sender: TObject) : string;
+function Tsak.WhatDeleted(sender : Tobject) : msestring;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+{
+   with sender as Tmemoedit do
+      begin
+           sakcancel;
+          strline :=  Lines[caretpos.y];
+        posword1 := '';
+             pos1 := cursorpos ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos +1 ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,cursorpos+1,1) = ' '   // the letter after cursor is space
+              then
+              begin
+       result := 'deleted, space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(cursorline+1)
+  end else
+   begin
+     result := 'deleted, position, ' + inttostr(length(posword1)+1) +  ', line, ' + inttostr(cursorline+1) +  ', in, ' +  posword1 + posword2;
+        end;
+
+//     writeln(result);
+
+        end;
+
+}
+end;
+
+function Tsak.WhatPos(sender : Tobject; kind : integer) : msestring ;  // kind 0 = all, , 1 = part
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+{
+            with sender as Tmemoedit do
+           begin
+                  sakcancel;
+
+         strline :=  Lines[cursorline];
+        posword1 := '';
+             pos1 := cursorpos ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos +1 ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,cursorpos+1,1) = ' '   // the letter after cursor is space
+              then
+   //      writeln('space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(cursorline) )
+        if kind = 0 then
+         result := 'space, after, '  +  posword1 + posword2 + ', in line, ' + inttostr(cursorline+1)
+         else   result := 'space, after, '  +  posword1 + posword2
+
+   else
+   begin
+   //   writeln(copy(strline,cursorpos+1,1) + ', line, ' + inttostr(cursorline) + ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+  // posword1 + posword2);
+     if kind = 0 then
+     result := copy(strline,cursorpos+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', line, ' + inttostr(cursorline+1)+ ', in, ' +
+   posword1 + posword2 else
+      result := copy(strline,cursorpos+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+   posword1 + posword2
+
+   end;
+
+  //   writeln(result);
+
+end;
+}
+end;
+
+function  Tsak.WhatLine(sender : Tobject) : msestring;
+begin
+{
+               with sender as Tmemoedit do
+           begin
+                  sakcancel;
+          result := 'line, ' + inttostr(cursorline +1) + ', ' +  Lines[cursorline];
+
+           end;
+}
+end;
+
+function Tsak.WhatWord(sender : Tobject) : msestring ;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+{
+            with sender as Tmemoedit do
+           begin
+                  sakcancel;
+          strline :=  Lines[cursorline];
+        posword1 := '';
+             pos1 := cursorpos -1;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos  ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+            result := posword1 + posword2  ;
+
+end;
+}
+end;
+
+function TSak.WhatChange(Sender: TObject) : msestring;
 var
 stringtemp : msestring;
 begin
@@ -207,7 +364,7 @@ if (Sender is tbooleaneditradio) then
     Result := ' changed position to ' + inttostr(round(tslider(sender).value * 100)) + ' ,%' ;
 end;
 
-function TSak.WhatChar(Sender: TObject; const info: keyeventinfoty): string;
+function TSak.WhatChar(Sender: TObject; const info: keyeventinfoty): msestring;
 
 procedure checkgrid();
  begin
@@ -351,7 +508,7 @@ begin  /// backspace
   end;
 end;
 
-function TSak.WhatName(Sender: TObject): string;
+function TSak.WhatName(Sender: TObject): msestring;
 begin
 
   Result := '';
@@ -432,7 +589,7 @@ function SAKLoadLib(const eSpeakBin: filenamety; const eSpeaklib: filenamety; co
 begin
  Result := -1;
 
- if sak = nil then sak:= TSAK.Create(nil);
+ if sak = nil then sak:= TSAK.Create();
  if (espeakdatadir = '') or (directoryexists(tosysfilepath(eSpeakDataDir))) then
  begin
   Result:= 0;
@@ -669,7 +826,7 @@ end;
 procedure TSAK.dokeydown(const Sender: iassistiveclient; const info: keyeventinfoty);
 var
   WhatCh: msestring;
-  oldlang : string;
+  oldlang : msestring;
   oldspeed, oldgender ,oldpitch, oldvolume : integer;
 begin
   thetimer.Enabled := False;
@@ -865,7 +1022,7 @@ begin
  }
 end;
 
-constructor TSAK.Create(const agrid: tstringgrid);
+constructor TSAK.Create();
 begin
         thetimer := ttimer.Create(nil);
         thetimer.interval := 500000;
@@ -961,7 +1118,7 @@ end;
 
 function TSAK.LoadLib: integer;
 //var
-// str1: string = '' ;
+// str1: msestring = '' ;
 begin
  {  
 result:= -1;
@@ -1009,7 +1166,7 @@ end  else
 end;
 
 ////////////////////// Voice Config Procedures ///////////////
-function SAKSetVoice(gender: shortint; language: string ; speed: integer ; pitch: integer ; volume : integer): integer;
+function SAKSetVoice(gender: shortint; language: msestring ; speed: integer ; pitch: integer ; volume : integer): integer;
 // gender => 1 = man / => 2 = woman => defaut -1 (man)
 // language => 'en' or 'pt' or 'ru'  => default 'en' => ''
 //  speed sets the speed in words-per-minute , Range 80 to 450. The default value is 175. => -1
@@ -1035,9 +1192,9 @@ end;
 
 
 ////////////////////// Speecher Procedures ////////////////
-procedure TSAK.espeak_key(Text: string);
+procedure TSAK.espeak_key(Text: msestring);
 var
- params: string = '';
+ params: msestring = '';
 begin
    aprocess.Parameters.clear;
 
@@ -1070,7 +1227,7 @@ if voice_volume <> -1 then AProcess.Parameters.Add('-a' + inttostr(voice_volume)
 end;
 
 //// custom speecher procedure => to use also as extra-speecher
-function SAKSay(Text: string): integer;
+function SAKSay(Text: msestring): integer;
 begin
 Result := -1;
 if assigned(sak) then

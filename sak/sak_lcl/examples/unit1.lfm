@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Width = 96
     Caption = 'Test me'
     OnClick = Button1Click
-    TabOrder = 1
+    TabOrder = 3
   end
   object memo1: TMemo
     Left = 144
@@ -32,7 +32,7 @@ object MainForm: TMainForm
       'Use F12 key to read all and'
       'Escape key to stop speaking...'
     )
-    TabOrder = 5
+    TabOrder = 4
   end
   object CheckBox1: TCheckBox
     Left = 24
@@ -40,7 +40,7 @@ object MainForm: TMainForm
     Top = 144
     Width = 88
     Caption = 'Check Test'
-    TabOrder = 2
+    TabOrder = 5
   end
   object RadioButton1: TRadioButton
     Left = 24
@@ -49,7 +49,7 @@ object MainForm: TMainForm
     Width = 59
     Caption = 'Test 1'
     Checked = True
-    TabOrder = 3
+    TabOrder = 6
     TabStop = True
   end
   object Stock: TStringGrid
@@ -57,7 +57,7 @@ object MainForm: TMainForm
     Height = 136
     Top = 40
     Width = 336
-    TabOrder = 8
+    TabOrder = 10
     Cells = (
       9
       0
@@ -95,7 +95,7 @@ object MainForm: TMainForm
     Top = 216
     Width = 59
     Caption = 'Test 2'
-    TabOrder = 4
+    TabOrder = 7
   end
   object Label1: TLabel
     Left = 16
@@ -113,7 +113,7 @@ object MainForm: TMainForm
     Width = 88
     Caption = 'Load sak'
     OnClick = Button2Click
-    TabOrder = 0
+    TabOrder = 1
   end
   object Button3: TButton
     Left = 32
@@ -123,14 +123,14 @@ object MainForm: TMainForm
     Caption = 'Unload sak'
     Enabled = False
     OnClick = Button3Click
-    TabOrder = 12
+    TabOrder = 2
   end
   object Edit1: TEdit
     Left = 384
     Height = 25
     Top = 179
     Width = 304
-    TabOrder = 9
+    TabOrder = 11
     Text = 'Write something here. Use F12 key to read it...'
   end
   object Label2: TLabel
@@ -150,7 +150,7 @@ object MainForm: TMainForm
     Width = 96
     Caption = 'Other form2'
     OnClick = Button4Click
-    TabOrder = 10
+    TabOrder = 13
   end
   object Button5: TButton
     Left = 600
@@ -159,7 +159,7 @@ object MainForm: TMainForm
     Width = 96
     Caption = 'Other form3'
     OnClick = Button5Click
-    TabOrder = 11
+    TabOrder = 14
   end
   object size_: TListBox
     Left = 144
@@ -174,7 +174,7 @@ object MainForm: TMainForm
     )
     ItemHeight = 21
     ScrollWidth = 72
-    TabOrder = 6
+    TabOrder = 8
   end
   object color_: TComboBox
     Left = 240
@@ -190,7 +190,7 @@ object MainForm: TMainForm
       'Blue'
     )
     Style = csDropDownList
-    TabOrder = 7
+    TabOrder = 9
     Text = 'Green'
   end
   object Button6: TButton
@@ -200,7 +200,7 @@ object MainForm: TMainForm
     Width = 96
     Caption = 'file dialog'
     OnClick = Button6Click
-    TabOrder = 13
+    TabOrder = 15
   end
   object Button7: TButton
     Left = 368
@@ -209,7 +209,7 @@ object MainForm: TMainForm
     Width = 96
     Caption = 'Save Dialog'
     OnClick = Button7Click
-    TabOrder = 14
+    TabOrder = 16
   end
   object TrackBar1: TTrackBar
     Left = 280
@@ -221,7 +221,7 @@ object MainForm: TMainForm
     ScalePos = trRight
     ShowSelRange = False
     TickStyle = tsNone
-    TabOrder = 15
+    TabOrder = 12
   end
   object Label3: TLabel
     Left = 256
@@ -237,7 +237,7 @@ object MainForm: TMainForm
     Height = 25
     Top = 16
     Width = 192
-    TabOrder = 16
+    TabOrder = 0
   end
   object Label4: TLabel
     Left = 171

@@ -111,9 +111,12 @@ type
     mouseclicked: boolean;
     lastfocused: string;
     AProcess: TProcess;
-    TheWord: string;  //// use F11 key in memo
-    TheSentence: string;   //// use F10 key in memo
-    TheLastSentence: string;  //// use F10 key in memo
+
+    CheckKey: word;
+   
+    TheWord: string;  //// use F10 key in edit
+    TheSentence: string;   //// use F11 key in edit
+
     ES_ExeFileName: ansistring;
     ES_DataDirectory: ansistring;
     ES_LibFileName: ansistring;
@@ -126,7 +129,6 @@ type
     voice_volume: integer;  //-a
     CompCount: integer;
     CheckObject: TObject;
-    CheckKey: word;
     CheckShift: TShiftState;
     CheckXPoint: integer;
     CheckYPoint: integer;
@@ -154,6 +156,8 @@ type
     procedure CheckRepeatClick(Sender: TObject);
     procedure CheckRepeatChange(Sender: TObject);
     procedure CheckRepeatKeyPress(Sender: TObject);
+    procedure CheckRepeatKeyDown(Sender: TObject);
+  
     procedure CheckRepeatMouseMove(Sender: TObject);
     procedure CheckRepeatMenuChange(Sender: TObject);
     procedure CheckRepeatDialog(Sender: TObject);
@@ -170,6 +174,11 @@ type
     procedure SAKMenuChange(Sender: TObject; item: Tmenuitem; User: boolean);
     procedure UpdateChild(AComp: TComponent);
     function WhatName(Sender: TObject): string;
+    function WhatPos(sender : Tobject; kind : integer) : string ;  // kind 0 = all, , 1 = part
+    function WhatDeleted(sender : Tobject) : string;
+    function WhatWord(sender : Tobject) : string;
+    function WhatLine(sender : Tobject) : string;
+
 
   private
     function LoadLib: integer;
@@ -235,6 +244,156 @@ var
 implementation
 
 /////////////////////////// Capture Assistive Procedures
+
+function Tsak.WhatDeleted(sender : Tobject) : string;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+   with sender as Tmemo do
+      begin
+           espeak_cancel;
+
+          strline :=  Lines[CaretPos.Y-1];
+        posword1 := '';
+             pos1 := CaretPos.x ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := CaretPos.x  ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,CaretPos.x+1,1) = ' '   // the letter after cursor is space
+              then
+              begin
+       result := 'deleted, space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(CaretPos.y+1)
+  end else
+   begin
+     result := 'deleted, position, ' + inttostr(length(posword1)+1) +  ', line, ' + inttostr(CaretPos.y+1) +  ', in, ' +  posword1 + posword2;
+        end;
+
+//     writeln(result);
+
+        end;
+
+
+end;
+
+function Tsak.WhatPos(sender : Tobject; kind : integer) : string ;  // kind 0 = all, , 1 = part
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+            with sender as Tmemo do
+           begin
+                  espeak_cancel;
+
+         strline :=  Lines[CaretPos.y];
+        posword1 := '';
+             pos1 := CaretPos.x ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := CaretPos.x +1  ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,CaretPos.x+1,1) = ' '   // the letter after cursor is space
+              then
+   //      writeln('space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(cursorline) )
+        if kind = 0 then
+         result := 'space, after, '  +  posword1 + posword2 + ', in line, ' + inttostr(CaretPos.y+1)
+         else   result := 'space, after, '  +  posword1 + posword2
+
+   else
+   begin
+   //   writeln(copy(strline,cursorpos+1,1) + ', line, ' + inttostr(cursorline) + ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+  // posword1 + posword2);
+     if kind = 0 then
+     result := copy(strline,CaretPos.x+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', line, ' + inttostr(CaretPos.y+1)+ ', in, ' +
+   posword1 + posword2 else
+      result := copy(strline,CaretPos.x+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+   posword1 + posword2
+
+   end;
+
+  //   writeln(result);
+
+end;
+
+end;
+
+function  Tsak.WhatLine(sender : Tobject) : string;
+begin
+               with sender as Tmemo do
+           begin
+                  espeak_cancel;
+          result := 'line, ' + inttostr(CaretPos.y+1) + ', ' +  Lines[CaretPos.y];
+
+           end;
+
+end;
+
+function Tsak.WhatWord(sender : Tobject) : string ;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+
+            with sender as Tmemo do
+           begin
+                  espeak_cancel;
+          strline :=  Lines[CaretPos.y];
+        posword1 := '';
+             pos1 := CaretPos.x -1;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := CaretPos.x  ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+            result := posword1 + posword2  ;
+
+end;
+
+end;
 
 procedure TSAK.UpdateChild(AComp: TComponent);
 var
@@ -1127,7 +1286,10 @@ begin
    if CheckKeyChar = ' ' then
    begin
    SAKSetVoice(2,'',150,-1,-1);
-   espeak_Key(Theword) ;
+  
+ if (CheckObject is TMemo) then espeak_Key(WhatWord(CheckObject))
+   else espeak_Key(Theword) ;
+
    TheSentence := TheSentence + ' ' + TheWord;
    Theword := '';
    SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
@@ -1135,9 +1297,9 @@ begin
    if (CheckKeyChar = '.') or (CheckKeyChar = '?') or (CheckKeyChar = '!') then
    begin
    SAKSetVoice(2,'',150,-1,-1);
-   espeak_Key( Theword + ', ' + TheSentence + ' ' + Theword) ;
-   SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
-   TheLastSentence := TheSentence + ' ' + Theword ;
+     if (CheckObject is TMemo) then espeak_Key(Whatword(CheckObject)+ ', ' + WhatLine(CheckObject))
+   else  espeak_Key( Theword + ', ' + TheSentence + ' ' + Theword) ;
+  SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
    TheSentence := '';
    Theword := '';
    end else
@@ -1252,14 +1414,50 @@ end;
 
 procedure TSAK.SAKKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
+  i: integer = 0;
+  finded: boolean = False;
+begin
+    espeak_Cancel    ;
+  TimerRepeat.Enabled := False;
+  TimerRepeat.OnTimer := @CheckRepeatKeyDown;
+  TimerRepeat.Interval := 400;
+  TimerRepeat.Enabled := False;
+  CheckObject := Sender;
+  CheckKey := Key;
+  CheckShift := Shift;
+  TimerRepeat.Enabled := True;
+
+  case CheckKey of
+
+   38: espeak_Key('up');
+   40: espeak_Key('down');
+   37: espeak_Key('left');
+   39: espeak_Key('right');
+   end;
+
+
+  while (finded = False) and (i < (Length(sak.AssistiveData))) do
+  begin
+    if (Sender = sak.AssistiveData[i].TheObject) and (sak.AssistiveData[i].OriOnKeyDown <> nil) then
+    begin
+      sak.AssistiveData[i].OriOnKeyDown(Sender, key, shift);
+      finded := True;
+    end;
+    Inc(i);
+  end;
+
+end;
+
+procedure TSAK.CheckRepeatKeyDown(Sender: TObject);
+var
   i: integer;
  oldlang : string;
- oldgender, oldspeed, oldpitch, oldvolume : integer;
+  oldgender, oldspeed, oldpitch, oldvolume : integer;
 begin
- 
-  for i := 0 to high(sak.AssistiveData) do
+  TimerRepeat.Enabled := False;
+    for i := 0 to high(sak.AssistiveData) do
   begin
-    if (Sender = sak.AssistiveData[i].TheObject) then
+    if (CheckObject = sak.AssistiveData[i].TheObject) then
     begin
 
  oldlang := voice_language;
@@ -1272,32 +1470,49 @@ begin
   oldpitch := voice_pitch;
   oldvolume := voice_volume;
 
-      if (key = 27) then
+      if (checkkey = 27) then
         espeak_Cancel
       else
       begin
-        case key of
+        case checkkey of
 
-          13: if (Sender is TButton) then
+          13: if (CheckObject is TButton) then
             else
               espeak_Key('enter');
           8: begin  /// backspace
-      if (Sender is TMemo) or (Sender is Tedit) then
+           if (CheckObject is Tedit) and (length(theword) > 1) then
     begin
-     //  writeln('before : ' + theword);
-      if length(theword) > 1 then   theword := copy(theword,1,length(theword)-1);
-     //  writeln('after : ' + theword);
-     end;
-          espeak_Key('back space');
-          end;
+    theword := copy(theword,1,length(theword)-1);
+     SAKSetVoice(2,'',165,-1,-1);
+      espeak_Key('back space, ' + theword) ;
+     SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
+     end  else
+      if (CheckObject is Tmemo) then
+          espeak_Key('back space, ' + WhatDeleted(CheckObject))
+      else
+                    espeak_Key('back space');
+  end;
 
-          32: if (Sender is TCheckBox) or (Sender is TButton) then
+          32: if (CheckObject is TCheckBox) or (CheckObject is TButton) then
             else
               espeak_Key('space');
-          38: espeak_Key('up');
-          40: espeak_Key('down');
-          37: espeak_Key('left');
-          39: espeak_Key('right');
+          38:  begin
+             if (CheckObject is Tmemo) then   espeak_Key(' in, ' + whatline(CheckObject) + ', ' + whatpos(CheckObject,1)) else
+                espeak_Key('up');
+              end;
+
+          40: begin
+             if (CheckObject is Tmemo) then   espeak_Key(' in, ' + whatline(CheckObject) + ', ' + whatpos(CheckObject,1)) else
+                espeak_Key('down');
+              end;
+          37: begin
+            if (CheckObject is Tmemo) then  espeak_Key(' , ' + whatpos(CheckObject,0))
+            else espeak_Key('left');
+             end;
+          39: begin
+            if (CheckObject is Tmemo) then  espeak_Key(' , '+ whatpos(CheckObject,0))
+            else espeak_Key('right');
+             end;
           112: espeak_Key('f 1');
           113: espeak_Key('f 2');
           114: espeak_Key('f 3');
@@ -1306,30 +1521,25 @@ begin
           117: espeak_Key('f 6');
           118: espeak_Key('f 7');
           119: espeak_Key('f 8');
-          120:  if (CheckObject is TMemo) then
-                    begin
-                SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(thelastsentence) ;
-                SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
-              end
-                  else
-          espeak_Key('f, 9');
+          120: espeak_Key('f, 9');
 
           121: if (CheckObject is TMemo) then
                     begin
                 SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(theword) ;
+               espeak_Key( whatword(CheckObject)) ;
                 SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
               end
                   else espeak_Key('f, 10');
+
           122:  if (CheckObject is TMemo) then
-                 begin
+                    begin
                 SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(thesentence) ;
+                espeak_Key(whatline(CheckObject)) ;
                 SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
               end
-                  else espeak_Key('f, 11') ;
-          9: espeak_Key('tab');
+                  else espeak_Key('f, 11');
+        
+           9: espeak_Key('tab');
           16: espeak_Key('shift');
           17: espeak_Key('control');
           18: espeak_Key('alt');
@@ -1337,31 +1547,32 @@ begin
           236: espeak_Key('alt gr');
           33: espeak_Key('page up');
           34: espeak_Key('page down');
-          46: espeak_Key('delete');
+          46:   if (CheckObject is Tmemo) then
+           espeak_Key('delete, ' + WhatDeleted(CheckObject))
+          else
+                      espeak_Key('delete');
           45: espeak_Key('insert');
           27: espeak_Key('escape');
           35: espeak_Key('end');
-          123: if (Sender is tmemo) then
-              with Sender as tmemo do
-               begin
-                SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(Text) ;
-                SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
-              end
-            else
-            if (Sender is tedit) then
-              with Sender as tedit do
+          123:  if (CheckObject is TMemo) then
+              with CheckObject as TMemo do
               begin
                 SAKSetVoice(2,'',165,-1,-1);
                 espeak_Key(Text) ;
                 SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
               end
             else
-              espeak_Key('f 12');
+            if (CheckObject is Tedit) then
+             with CheckObject as Tedit do
+              begin
+                SAKSetVoice(2,'',165,-1,-1);
+                espeak_Key(Text) ;
+                SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
+              end
+            else
+              espeak_Key('f, 12');
         end;
 
-        if sak.AssistiveData[i].OriOnKeyDown <> nil then
-          sak.AssistiveData[i].OriOnKeyDown(Sender, Key, Shift);
         exit;
       end;
     end;
@@ -2082,8 +2293,7 @@ end  else
 
    TheWord := '' ;
   TheSentence := '' ;
-  TheLastSentence := '' ;
-
+ 
   voice_gender := '' ;
   voice_language := '' ;
   voice_speed := -1 ;

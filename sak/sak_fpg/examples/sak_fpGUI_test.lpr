@@ -132,11 +132,11 @@ var
     FontDesc := '#Edit1';
     Hint := '';
     Lines.Add('The quick brown fox, jumps over the lazy dog...');
-    Lines.Add('');
     Lines.Add('Please, write something here...');
-    Lines.Add('');
     Lines.Add('Use F12 key to read all.');
-    Lines.Add('Use F11 key to stop reading.');
+    Lines.Add('Use F11 key to read line.');
+    Lines.Add('Use F10 key to read word.');
+    Lines.Add('Use Cancel key to stop reading.');
     TabOrder := 0;
   end;
 
@@ -469,12 +469,12 @@ var
     SetPosition(144, 72, 224, 113);
     FontDesc := '#Edit1';
     Hint := '';
-    Lines.Add('The quick brown fox,');
-    Lines.Add('jumps over the lazy dog...');
-    Lines.Add('');
+    Lines.Add('The quick brown fox, jumps over the lazy dog...');
     Lines.Add('Please, write something here...');
-    Lines.Add('Use F12 key to read all. ');
-    Lines.Add('Use F11 key to stop reading.');
+    Lines.Add('Use F12 key to read all.');
+    Lines.Add('Use F11 key to read line.');
+    Lines.Add('Use F10 key to read word.');
+    Lines.Add('Use Cancel key to stop reading.');
     TabOrder := 5;
   end;
 
@@ -518,7 +518,7 @@ var
     FontDesc := '#Edit1';
     Hint := '';
     TabOrder := 9;
-    Text := 'Write something here. Use F12 key to read it, F11 to stop reading...';
+    Text := 'Write something here. Use F12 key to read it, Cancel key to stop reading...';
   end;
 
   Button3 := TfpgButton.Create(self);

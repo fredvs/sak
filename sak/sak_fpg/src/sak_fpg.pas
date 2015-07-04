@@ -114,9 +114,8 @@ type
   lastfocused: string ;
   AProcess: TProcess;
 
-    TheWord: string;  //// use F11 key in memo
-    TheSentence: string;   //// use F10 key in memo
-    TheLastSentence: string;  //// use F10 key in memo
+    TheWord: string;  //// use F10 key in edit
+    TheSentence: string;   //// use F11 key in edit
 
     ES_ExeFileName: ansistring;
     ES_DataDirectory: ansistring;
@@ -170,6 +169,10 @@ type
     procedure UpdateChild(AComp : TComponent) ;
     function WhatName(Sender: TObject): string;
     procedure ChildComponentCount(AComponent: TComponent);
+    function WhatPos(sender : Tobject; kind : integer) : string ;  // kind 0 = all, , 1 = part
+    function WhatDeleted(sender : Tobject) : string;
+    function WhatWord(sender : Tobject) : string;
+    function WhatLine(sender : Tobject) : string;
     function LoadLib: integer;
     procedure unLoadLib;
     procedure InitObject;
@@ -244,6 +247,156 @@ var
   isenabled: boolean = False;
  
 implementation
+
+function Tsak.WhatDeleted(sender : Tobject) : string;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+   with sender as Tfpgmemo do
+      begin
+           espeak_cancel;
+          strline :=  Lines[cursorline];
+        posword1 := '';
+             pos1 := cursorpos ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos +1 ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,cursorpos+1,1) = ' '   // the letter after cursor is space
+              then
+              begin
+       result := 'deleted, space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(cursorline+1)
+  end else
+   begin
+     result := 'deleted, position, ' + inttostr(length(posword1)+1) +  ', line, ' + inttostr(cursorline+1) +  ', in, ' +  posword1 + posword2;
+        end;
+
+//     writeln(result);
+
+        end;
+
+
+end;
+
+function Tsak.WhatPos(sender : Tobject; kind : integer) : string ;  // kind 0 = all, , 1 = part
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+
+            with sender as Tfpgmemo do
+           begin
+                  espeak_cancel;
+
+         strline :=  Lines[cursorline];
+        posword1 := '';
+             pos1 := cursorpos ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos +1 ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+
+       if  copy(strline,cursorpos+1,1) = ' '   // the letter after cursor is space
+              then
+   //      writeln('space, after, '  +  posword1 + posword2 + ' in line ' + inttostr(cursorline) )
+        if kind = 0 then
+         result := 'space, after, '  +  posword1 + posword2 + ', in line, ' + inttostr(cursorline+1)
+         else   result := 'space, after, '  +  posword1 + posword2
+
+   else
+   begin
+   //   writeln(copy(strline,cursorpos+1,1) + ', line, ' + inttostr(cursorline) + ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+  // posword1 + posword2);
+     if kind = 0 then
+     result := copy(strline,cursorpos+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', line, ' + inttostr(cursorline+1)+ ', in, ' +
+   posword1 + posword2 else
+      result := copy(strline,cursorpos+1,1) +  ' , position, ' + inttostr(length(posword1)+1) + ', in, ' +
+   posword1 + posword2
+
+   end;
+
+  //   writeln(result);
+
+end;
+
+end;
+
+function  Tsak.WhatLine(sender : Tobject) : string;
+begin
+               with sender as Tfpgmemo do
+           begin
+                  espeak_cancel;
+          result := 'line, ' + inttostr(cursorline +1) + ', ' +  Lines[cursorline];
+
+           end;
+
+end;
+
+function Tsak.WhatWord(sender : Tobject) : string ;
+var
+ strline, posword1, posword2 : string;
+ pos1 : integer;
+begin
+
+            with sender as Tfpgmemo do
+           begin
+                  espeak_cancel;
+          strline :=  Lines[cursorline];
+        posword1 := '';
+             pos1 := cursorpos -1;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
+          begin
+        posword1 := copy(strline,pos1,1)   + posword1;
+        dec(pos1);
+          end;
+
+    //    writeln('chars before pos = ' + posword1);  // the letters before cursor
+
+    posword2 := '';
+             pos1 := cursorpos  ;
+        while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
+          begin
+        posword2 := posword2 + copy(strline,pos1,1)  ;
+        inc(pos1);
+          end;
+
+      if trim(posword1 + posword2) = '' then posword1 := 'empty, ';
+
+            result := posword1 + posword2  ;
+
+end;
+
+end;
 
 procedure Tsak.UpdateChild(AComp : TComponent) ;
 var
@@ -1026,7 +1179,7 @@ begin
   CheckShift := Shift;
     if (CheckObject is TfpgMemo) or (CheckObject is Tfpgedit)  or (CheckObject is Tfpgstringgrid) then
    begin
-
+     espeak_cancel;
   oldlang := voice_language;
     if voice_gender = '' then
     oldgender := -1 else
@@ -1036,12 +1189,13 @@ begin
   oldspeed := voice_speed;
   oldpitch := voice_pitch;
   oldvolume := voice_volume;
-
-   if CheckKey = 32 then
+     if CheckKey = 32 then
    begin
    //espeak_Key('space') ;
+
    SAKSetVoice(2,'',150,-1,-1);
-   espeak_Key(Theword) ;
+    if (CheckObject is TfpgMemo) then espeak_Key(WhatWord(CheckObject))
+   else espeak_Key(Theword) ;
    TheSentence := TheSentence + ' ' + TheWord;
    Theword := '';
    SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
@@ -1051,12 +1205,13 @@ begin
    begin
    //espeak_Key('dot') ;
    SAKSetVoice(2,'',150,-1,-1);
-   espeak_Key( Theword + ', ' + TheSentence + ' ' + Theword) ;
+     if (CheckObject is TfpgMemo) then espeak_Key(Whatword(CheckObject)+ ', ' + WhatLine(CheckObject))
+   else  espeak_Key( Theword + ', ' + TheSentence + ' ' + Theword) ;
    SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
-   TheLastSentence := TheSentence + ' ' + Theword ;
    TheSentence := '';
    Theword := '';
    end
+
   else
   begin
      if ((CheckObject is Tfpgstringgrid) or (CheckObject is Tfpgtrackbar)) and ( (CheckKey =keyUp) or (CheckKey = keydown) or
@@ -1076,6 +1231,7 @@ begin
   else  TimerRepeat.Interval := 1 ;
     TimerRepeat.Enabled := True;
    end;
+
 
    end
    else
@@ -1100,7 +1256,7 @@ procedure TSAK.CheckRepeatKeyPress(Sender: TObject);
 var
   i: integer;
   ifok: boolean = True;
-oldlang : string;
+oldlang: string;
  oldgender, oldspeed, oldpitch, oldvolume : integer;
 begin
   TimerRepeat.Enabled := False;
@@ -1127,23 +1283,24 @@ begin
 (CheckKey = 57398) or (CheckKey = 57399) or (CheckKey = 127) or   (CheckKey = 57378) or (CheckKey = 27) or (CheckKey = 57401) or   (CheckKey = 57400)
 then
  begin
-      espeak_cancel;   // f11 CheckKey = 57611
-     if (CheckKey = 57611) and ((CheckObject is TfpgMemo) or (CheckObject is TfpgEdit))
-       then
-         else
-      begin
-        case CheckKey of
+      espeak_cancel;   //
+
+      case CheckKey of
 
           13: espeak_Key('enter');
           8: begin  /// backspace
-      if (CheckObject is TfpgMemo) or (CheckObject is Tfpgedit) then
+           if (CheckObject is Tfpgedit) and (length(theword) > 1) then
     begin
-     //  writeln('before : ' + theword);
-      if length(theword) > 1 then   theword := copy(theword,1,length(theword)-1);
-     //  writeln('after : ' + theword);
-     end;
-          espeak_Key('back space');
-          end;
+    theword := copy(theword,1,length(theword)-1);
+     SAKSetVoice(2,'',165,-1,-1);
+      espeak_Key('back space, ' + theword) ;
+     SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
+     end  else
+      if (CheckObject is Tfpgmemo) then
+       espeak_Key('back space, ' + WhatDeleted(CheckObject))
+      else
+                    espeak_Key('back space');
+  end;
           32: begin
           if (CheckObject is TfpgCheckBox) or (CheckObject is TfpgRadioButton) or (CheckObject is TfpgComboBox) or
               (CheckObject is TfpgListBox) then
@@ -1153,6 +1310,8 @@ then
 
           keyUp:
           begin
+             if (CheckObject is Tfpgmemo) then   espeak_Key('up, in, ' + whatline(CheckObject) + ', ' + whatpos(CheckObject,1)) else
+             begin
 
             if (CheckObject is TfpgTrackBar) then
               with CheckObject as TfpgTrackBar do
@@ -1169,8 +1328,14 @@ then
                 espeak_Key('up');
            end;
 
+          end;
+
           keydown:
           begin
+
+          if (CheckObject is Tfpgmemo) then  espeak_Key('down, in, ' + whatline(CheckObject) +', ' + whatpos(CheckObject,1))
+          else
+             begin
 
             if (CheckObject is TfpgTrackBar) then
               with CheckObject as TfpgTrackBar do
@@ -1187,8 +1352,13 @@ then
              espeak_Key('down');
           end;
 
+            end;
+
           keyleft:
           begin
+
+            if (CheckObject is Tfpgmemo) then  espeak_Key('left, '+ whatpos(CheckObject,0))
+            else begin
 
             if (CheckObject is TfpgTrackBar) then
               with CheckObject as TfpgTrackBar do
@@ -1206,8 +1376,13 @@ then
 
           end;
 
+          end;
+
           keyright:
           begin
+
+            if (CheckObject is Tfpgmemo) then espeak_Key('right, '+ whatpos(CheckObject,0)) else
+             begin
 
             if (CheckObject is TfpgTrackBar) then
               with CheckObject as TfpgTrackBar do
@@ -1221,6 +1396,8 @@ then
               with CheckObject as Tfpgstringgrid do
                CheckFocusChange(CheckObject) else
                 espeak_Key('right');
+
+          end;
 
           end;
           57601: espeak_Key('f, 1');
@@ -1250,26 +1427,22 @@ then
                CheckFocusChange(CheckObject) else
              espeak_Key('page, down');
 
-          127: espeak_Key('delete');
+          127:   if (CheckObject is Tfpgmemo) then
+           espeak_Key('delete, ' + WhatDeleted(CheckObject))
+          else
+                      espeak_Key('delete');
           57378: espeak_Key('insert');
           27: espeak_Key('escape');
           57401: espeak_Key('end');
           57400: espeak_Key('home');
 
 
-         57609:  if (CheckObject is TfpgMemo) then
-                   begin
-                SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(thelastsentence) ;
-                SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
-              end
-                  else
-          espeak_Key('f, 9');
+         57609:  espeak_Key('f, 9');
 
           57610: if (CheckObject is TfpgMemo) then
                     begin
                 SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(theword) ;
+               espeak_Key( whatword(CheckObject)) ;
                 SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
               end
                   else espeak_Key('f, 10');
@@ -1277,7 +1450,7 @@ then
           57611: if (CheckObject is TfpgMemo) then
                     begin
                 SAKSetVoice(2,'',165,-1,-1);
-                espeak_Key(thesentence) ;
+                espeak_Key(whatline(CheckObject)) ;
                 SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
               end
                   else espeak_Key('f, 11');
@@ -1301,8 +1474,7 @@ then
               espeak_Key('f, 12');
         end;
         exit;
-      end;
-    end else    espeak_Key(KeycodeToText(CheckKey, [])) ;
+        end else    espeak_Key(KeycodeToText(CheckKey, [])) ;
     end;
   end;
 end;
@@ -1481,7 +1653,6 @@ end  else
 
   TheWord := '' ;
   TheSentence := '' ;
-  TheLastSentence := '' ;
 
   voice_gender := '' ;
   voice_language := '' ;

@@ -609,8 +609,10 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=writeln
+finddtext=caret
 findhistory=10
+ caret
+ caretpos
  writeln
  docellevent
  espeak_Key
@@ -619,10 +621,8 @@ findhistory=10
  colomn
  whatchar
  unload
- aprocess
- speaktext
 findoptions=1
-editpos=26
+editpos=29
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -648,7 +648,10 @@ editpos=26
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,6
+ 0,-1073741823
+ 0,350
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -675,7 +678,10 @@ bookmarks22=0
 bookmarks23=0
 bookmarks24=0
 bookmarks25=0
-sourcefiles=26
+bookmarks26=0
+bookmarks27=0
+bookmarks28=0
+sourcefiles=29
  ${PROJECTDIR}/main.pas
  ${PROJECTDIR}/sak_mse.pas
  /home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveclient.pas
@@ -702,7 +708,10 @@ sourcefiles=26
  ${PROJECTDIR}/sak_mse.pas
  ${PROJECTDIR}/main.mfm
  ${PROJECTDIR}/mse_sak_demo.pas
-relpaths=26
+ ${PROJECTDIR}/sak_mse.pas
+ /home/fred/Téléchargements/mseide-msegui.git/lib/common/editwidgets/msedataedits.pas
+ /home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseguiglob.pas
+relpaths=29
  main.pas
  sak_mse.pas
  home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveclient.pas
@@ -729,7 +738,10 @@ relpaths=26
  sak_mse.pas
  main.mfm
  mse_sak_demo.pas
-ismoduletexts=26
+ sak_mse.pas
+ ../../Téléchargements/mseide-msegui.git/lib/common/editwidgets/msedataedits.pas
+ ../../Téléchargements/mseide-msegui.git/lib/common/kernel/mseguiglob.pas
+ismoduletexts=29
  0
  0
  0
@@ -755,6 +767,9 @@ ismoduletexts=26
  0
  0
  -1
+ 0
+ 0
+ 0
  0
 modules=0
 moduleoptions=0
@@ -762,8 +777,8 @@ visiblemodules=0
 nomenumodules=0
 [sourcefo.tabwidget]
 tabsize=132
-firsttab=9
-index=25
+firsttab=10
+index=26
 [layout]
 windowlayout=504
  [mainfo.basedock]
@@ -889,7 +904,7 @@ windowlayout=504
  [projecttreefo]
  splitdir=0
  useroptions=16491
- stackedunder=targetconsolefo
+ stackedunder=memoryfo
  parent=
  mdistate=0
  nx=0
@@ -977,7 +992,7 @@ windowlayout=504
  [breakpointsfo]
  splitdir=0
  useroptions=16491
- stackedunder=memoryfo
+ stackedunder=projecttreefo
  parent=
  mdistate=0
  nx=0
@@ -1023,7 +1038,7 @@ windowlayout=504
  [symbolfo]
  splitdir=0
  useroptions=16507
- stackedunder=projecttreefo
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -1078,7 +1093,7 @@ windowlayout=504
  rcy=0
  wsize=0
  active=0
- visible=1
+ visible=0
  [watchfo.grid]
  propcolwidthref=105
  values0=0
@@ -1109,9 +1124,9 @@ windowlayout=504
  ncx=0
  ncy=0
  x=0
- y=441
+ y=502
  cx=1346
- cy=197
+ cy=136
  rcx=1346
  rcy=638
  [componentstorefo]
