@@ -1420,13 +1420,12 @@ begin
     espeak_Cancel    ;
   TimerRepeat.Enabled := False;
   TimerRepeat.OnTimer := @CheckRepeatKeyDown;
-  TimerRepeat.Interval := 400;
+  TimerRepeat.Interval := 600;
   TimerRepeat.Enabled := False;
   CheckObject := Sender;
   CheckKey := Key;
   CheckShift := Shift;
-  TimerRepeat.Enabled := True;
-
+ 
   case CheckKey of
 
    38: espeak_Key('up');
@@ -1434,6 +1433,8 @@ begin
    37: espeak_Key('left');
    39: espeak_Key('right');
    end;
+
+ TimerRepeat.Enabled := True;
 
 
   while (finded = False) and (i < (Length(sak.AssistiveData))) do

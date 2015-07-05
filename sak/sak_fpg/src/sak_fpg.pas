@@ -1214,7 +1214,7 @@ begin
 
   else
   begin
-     if ((CheckObject is Tfpgstringgrid) or (CheckObject is Tfpgtrackbar)) and ( (CheckKey =keyUp) or (CheckKey = keydown) or
+     if ((CheckObject is Tfpgstringgrid) or (CheckObject is TfpgMemo) or (CheckObject is Tfpgtrackbar)) and ( (CheckKey =keyUp) or (CheckKey = keydown) or
      (CheckKey =57398) or (CheckKey = 57399) or
   (CheckKey = keyleft) or (CheckKey = keyright)) then
   begin
@@ -1226,7 +1226,7 @@ begin
     if CheckKey =57398 then  espeak_Key('page up') else
    if CheckKey =57399 then  espeak_Key('page down') ;
 
-   TimerRepeat.Interval := 800 ;
+   TimerRepeat.Interval := 600 ;
   end
   else  TimerRepeat.Interval := 1 ;
     TimerRepeat.Enabled := True;
@@ -1310,7 +1310,7 @@ then
 
           keyUp:
           begin
-             if (CheckObject is Tfpgmemo) then   espeak_Key('up, in, ' + whatline(CheckObject) + ', ' + whatpos(CheckObject,1)) else
+             if (CheckObject is Tfpgmemo) then   espeak_Key(' in ' + whatline(CheckObject) + ', ' + whatpos(CheckObject,1)) else
              begin
 
             if (CheckObject is TfpgTrackBar) then
@@ -1333,7 +1333,7 @@ then
           keydown:
           begin
 
-          if (CheckObject is Tfpgmemo) then  espeak_Key('down, in, ' + whatline(CheckObject) +', ' + whatpos(CheckObject,1))
+          if (CheckObject is Tfpgmemo) then  espeak_Key(' in ' + whatline(CheckObject) +', ' + whatpos(CheckObject,1))
           else
              begin
 
@@ -1357,7 +1357,7 @@ then
           keyleft:
           begin
 
-            if (CheckObject is Tfpgmemo) then  espeak_Key('left, '+ whatpos(CheckObject,0))
+            if (CheckObject is Tfpgmemo) then  espeak_Key(whatpos(CheckObject,0))
             else begin
 
             if (CheckObject is TfpgTrackBar) then
@@ -1381,7 +1381,7 @@ then
           keyright:
           begin
 
-            if (CheckObject is Tfpgmemo) then espeak_Key('right, '+ whatpos(CheckObject,0)) else
+            if (CheckObject is Tfpgmemo) then espeak_Key(whatpos(CheckObject,0)) else
              begin
 
             if (CheckObject is TfpgTrackBar) then
