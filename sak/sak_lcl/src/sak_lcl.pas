@@ -121,6 +121,8 @@ type
     ES_DataDirectory: ansistring;
     ES_LibFileName: ansistring;
     PA_LibFileName: ansistring;
+
+    paused : boolean;
     
     voice_language: ansistring;
     voice_gender: ansistring;
@@ -208,6 +210,12 @@ procedure SAKSuspend();
 
 ///// usefull if events are changed at run time
 procedure SAKUpdate();
+
+///// pause voicing
+procedure SAKPause();
+
+///// un-pause voicing
+procedure SAKUnPause();
 
 //// is sak enabled ?
 function SakIsEnabled: boolean;
@@ -863,6 +871,8 @@ var
   i: integer;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) then
@@ -879,6 +889,7 @@ begin
       exit;
     end;
   end;
+end;
 end;
 
 procedure TSAK.SAKChange(Sender: TObject);
@@ -910,6 +921,8 @@ var
   finded: boolean = False;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   TimerRepeat.OnTimer := @CheckRepeatMenuChange;
   TimerRepeat.Interval := 300;
   CheckObject := Sender;
@@ -927,6 +940,7 @@ begin
   end;
 
 end;
+end;
 
 procedure TSAK.CheckRepeatMenuChange(Sender: TObject);
 var
@@ -936,6 +950,8 @@ var
 begin
   user := False;
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) and (CheckObject is TMainMenu) and (menuitem is Tmenuitem) then
@@ -947,6 +963,7 @@ begin
       exit;
     end;
   end;
+end;
 end;
 
 procedure TSAK.SAKSelectionChange(Sender: TObject; User: boolean);
@@ -978,6 +995,8 @@ var
   texttmp: string;
   user: boolean;
 begin
+if paused = false then
+   begin
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (thecontrol = sak.AssistiveData[i].TheObject) and (thecontrol is TStringgrid) then
@@ -997,6 +1016,7 @@ begin
     end;
   end;
 end;
+end;
 
 procedure TSAK.CheckRepeatSelectionChange(Sender: TObject);
 var
@@ -1006,6 +1026,8 @@ var
 begin
   user := False;
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) and (CheckObject is TListBox) then
@@ -1016,6 +1038,7 @@ begin
       exit;
     end;
   end;
+end;
 end;
 
 procedure TSAK.SAKSelectionChangeDialog(Sender: TObject);
@@ -1047,6 +1070,8 @@ var
   texttmp: string;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   x := 0;
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
@@ -1075,6 +1100,7 @@ begin
     end;
   end;
 end;
+end;
 
 procedure TSAK.CheckRepeatChange(Sender: TObject);
 var
@@ -1082,6 +1108,8 @@ var
   texttmp: string;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) then
@@ -1118,6 +1146,7 @@ begin
       exit;
     end;
   end;
+end;
 end;
 
 procedure TSAK.SAKMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: integer);
@@ -1164,6 +1193,8 @@ begin
   if (mouseclicked = False) and (whatname(CheckObject) <> lastfocused) then
   begin
     TimerRepeat.Enabled := False;
+if paused = false then
+   begin
     for i := 0 to (Length(sak.AssistiveData) - 1) do
     begin
       if (CheckObject = sak.AssistiveData[i].TheObject) then
@@ -1212,6 +1243,7 @@ begin
     end;
   end;
 end;
+end;
 
 procedure TSAK.SAKEnter(Sender: TObject);
 var
@@ -1241,6 +1273,8 @@ var
   texttmp, nameobj: string;
   i: integer;
 begin
+if paused = false then
+   begin
   if mouseclicked = False then
   begin
     TimerRepeat.Enabled := False;
@@ -1257,6 +1291,7 @@ begin
   end;
   mouseclicked := False;
 end;
+end;
 
 procedure TSAK.SAKKeyPress(Sender: TObject; var Key: char);
 var
@@ -1266,6 +1301,8 @@ var
   oldgender, oldspeed, oldpitch, oldvolume : integer;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   TimerRepeat.OnTimer := @CheckRepeatKeyPress;
   TimerRepeat.Interval := 300;
   CheckObject := Sender;
@@ -1327,6 +1364,7 @@ begin
     Inc(i);
   end;
 end;
+end;
 
 procedure TSAK.CheckRepeatKeyPress(Sender: TObject);
 var
@@ -1334,6 +1372,8 @@ var
   i: integer;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
   tempstr := CheckKeyChar;
   tempstr := trim(tempstr);
   for i := 0 to (Length(sak.AssistiveData) - 1) do
@@ -1350,6 +1390,7 @@ begin
       exit;
     end;
   end;
+end;
 end;
 
 procedure TSAK.SAKKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -1384,6 +1425,9 @@ var
   texttmp: string;
 begin
   TimerRepeat.Enabled := False;
+if paused = false then
+   begin
+
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) then
@@ -1411,15 +1455,18 @@ begin
   end;
 
 end;
+end;
 
 procedure TSAK.SAKKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 var
   i: integer = 0;
   finded: boolean = False;
 begin
+ TimerRepeat.Enabled := False;
+if paused = false then
+   begin
     espeak_Cancel    ;
-  TimerRepeat.Enabled := False;
-  TimerRepeat.OnTimer := @CheckRepeatKeyDown;
+   TimerRepeat.OnTimer := @CheckRepeatKeyDown;
   TimerRepeat.Interval := 600;
   TimerRepeat.Enabled := False;
   CheckObject := Sender;
@@ -1448,6 +1495,7 @@ begin
   end;
 
 end;
+end;
 
 procedure TSAK.CheckRepeatKeyDown(Sender: TObject);
 var
@@ -1456,6 +1504,9 @@ var
   oldgender, oldspeed, oldpitch, oldvolume : integer;
 begin
   TimerRepeat.Enabled := False;
+ if paused = false then
+   begin
+ 
     for i := 0 to high(sak.AssistiveData) do
   begin
     if (CheckObject = sak.AssistiveData[i].TheObject) then
@@ -1578,6 +1629,7 @@ begin
       end;
     end;
   end;
+end;
 end;
 
 ////////////////////// Loading Procedure
@@ -2543,6 +2595,23 @@ begin
   sak.voice_volume := volume;
   sak.voice_pitch := pitch;
   end;
+end;
+
+////// pause voicing
+procedure SAKPause();
+begin
+  if assigned(sak) then
+  begin
+  sak.timercount.Enabled := false;
+    sak.paused:=true;
+  end;
+end;
+
+////// pause voicing
+procedure SAKUnPause();
+begin
+  if assigned(sak) then
+    sak.paused:=false;
 end;
 
 ////////////////////// Speecher Procedures ////////////////

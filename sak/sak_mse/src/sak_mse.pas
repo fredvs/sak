@@ -78,6 +78,9 @@ type
     AProcess: TProcess;
     
     CompCount: integer;
+
+    paused : boolean;
+
     CheckObject: TObject;
     CheckPoint: Tpoint;
     CheckShift: TShiftState;
@@ -167,6 +170,12 @@ function WhatFile(const sakini : filenamety = ''; what : integer = 0) : string;
 
 //// to know if sak is loaded
 function SakIsEnabled: boolean;
+
+///// pause voicing
+procedure SAKPause();
+
+///// un-pause voicing
+procedure SAKUnPause();
 
 ////////////////////// Voice Config Procedures ///////////////
 function SAKSetVoice(gender: shortint; language: msestring ; speed: integer ; pitch: integer ; volume : integer ): integer;
@@ -773,7 +782,10 @@ end;
 
 procedure TSAK.dochange(const sender: iassistiveclient);
 begin
- thetimer.enabled := false;
+ thetimer.enabled := false; 
+if paused = false then
+   begin
+
 if WhatName(sender.getinstance) <> '' then
  begin  
   TheSender := sender.getinstance;  
@@ -782,19 +794,26 @@ if WhatName(sender.getinstance) <> '' then
   thetimer.enabled := true;
  end;
  end;
+end;
 
 procedure TSAK.ontimerchange(const sender: TObject);
 begin
 thetimer.enabled := false;
+if paused = false then
+   begin
  SakCancel;
  espeak_Key(WhatName(TheSender) + WhatChange(TheSender));
+end;
 end;
 
 procedure TSAK.ontimerenter(const Sender: TObject);
 begin
   thetimer.Enabled := False;
+if paused = false then
+   begin
   SakCancel;
   espeak_Key(WhatName(TheSender) + ', enter');
+end;
 end;
 
 procedure TSAK.doenter(const Sender: iassistiveclient);
@@ -817,10 +836,13 @@ end;
 procedure TSAK.ontimerkey(const Sender: TObject);
 begin
 if itementer = false then begin
+if paused = false then
+   begin
   thetimer.Enabled := False;
   SakCancel;
   espeak_Key(WhatChar(TheSender, TheKeyinfo));
     end;
+end;
 end;
 
 procedure TSAK.dokeydown(const Sender: iassistiveclient; const info: keyeventinfoty);
@@ -830,9 +852,9 @@ var
   oldspeed, oldgender ,oldpitch, oldvolume : integer;
 begin
   thetimer.Enabled := False;
+if paused = false then
+   begin
 
-   
-  
     WhatCh := WhatChar(Sender.getinstance, info);
     TheSender := Sender.getinstance;
     TheKeyInfo := info;
@@ -900,6 +922,7 @@ begin
    end;
 
 end;
+end;
 
 procedure TSAK.ontimermouse(const Sender: TObject);
 var
@@ -907,6 +930,8 @@ stringtemp : msestring = '' ;
 
 begin
   thetimer.Enabled := False;
+if paused = false then
+   begin
 
   if TheMouseinfo.eventkind = ek_mousemove then
   begin
@@ -943,6 +968,7 @@ begin
   end;
 
 end;
+end;
 
 procedure TSAK.clientmouseevent(const sender: iassistiveclient;
                                            const info: mouseeventinfoty);
@@ -972,10 +998,13 @@ end;
 procedure TSAK.ontimeritementer(const Sender: TObject);
 begin
   thetimer.Enabled := False;
+if paused = false then
+   begin
   SakCancel;
   espeak_key(WhatName(TheSender) + ', ' + TheMenuInfo[TheMenuIndex].buttoninfo.ca.caption.text + ' , focused');
   itementer:= false;
  end;
+end;
 
 procedure TSAK.doitementer(const sender: iassistiveclient;
                const items: shapeinfoarty; const aindex: integer);
@@ -1128,6 +1157,7 @@ if (getprocessoutput(ES_ExeFileName+' --version','',str1,5000000,
                     (pos('speak text-to-speech',str1) <> 0)) then begin 
 }
   result:= 0;
+  paused := False;
  
   AProcess := TProcess.Create(nil);
   AProcess.Executable :=
@@ -1163,6 +1193,22 @@ end  else
 
   assistiveserver:= iassistiveserver(self); //sak is now operable
 // end;
+end;
+
+////// pause voicing
+procedure SAKPause();
+begin
+  if assigned(sak) then
+  begin
+     sak.paused:=true;
+  end;
+end;
+
+////// pause voicing
+procedure SAKUnPause();
+begin
+  if assigned(sak) then
+    sak.paused:=false;
 end;
 
 ////////////////////// Voice Config Procedures ///////////////
