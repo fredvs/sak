@@ -1,14 +1,14 @@
 object sak_demo: tmainfo
-  bounds_x = 220
-  bounds_y = 212
-  bounds_cx = 653
+  bounds_x = 137
+  bounds_y = 220
+  bounds_cx = 973
   bounds_cy = 233
   container.frame.localprops = []
   container.frame.localprops1 = []
   container.bounds = (
     0
     0
-    653
+    973
     233
   )
   caption = 'Demo of mse with sak'
@@ -126,10 +126,10 @@ object sak_demo: tmainfo
     scrollbar.face.localprops = []
   end
   object tmemoedit1: tmemoedit
-    frame.sbhorz.pagesize = 1
-    frame.sbvert.pagesize = 1
     frame.localprops = [frl_colorclient]
     frame.localprops1 = []
+    frame.sbhorz.pagesize = 1
+    frame.sbvert.pagesize = 1
     taborder = 4
     bounds_x = 384
     bounds_y = 8
@@ -227,9 +227,8 @@ object sak_demo: tmainfo
     taborder = 10
     bounds_x = 8
     bounds_y = 80
-    bounds_cx = 293
+    bounds_cx = 292
     bounds_cy = 134
-    anchors = [an_left, an_top, an_right]
     datacols.count = 5
     datacols.items = <    
       item
@@ -332,5 +331,29 @@ object sak_demo: tmainfo
     bounds_cy = 39
     controller.options = [fdo_directory, fdo_savelastdir]
     reffontheight = 15
+  end
+  object twidgetgrid1: twidgetgrid
+    frame.localprops = []
+    frame.localprops1 = []
+    taborder = 13
+    bounds_x = 672
+    bounds_y = 48
+    bounds_cx = 266
+    bounds_cy = 138
+    fixrows.count = 1
+    fixrows.items = <    
+      item
+        height = 17
+      end>
+    reffontheight = 15
+  end
+  object tbutton3: tbutton
+    taborder = 14
+    bounds_x = 728
+    bounds_y = 8
+    bounds_cx = 50
+    bounds_cy = 21
+    state = [as_localcaption]
+    caption = 'hello'
   end
 end

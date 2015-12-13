@@ -5,9 +5,9 @@ uses
  msetypes,mseglob,mseguiglob,mseguiintf,mseapplication,msestat,msemenus,msegui,
  msegraphics,msegraphutils,mseevent,mseclasses,msewidgets,mseforms,
  msesimplewidgets,msedataedits,mseedit,mseificomp,mseificompglob,mseifiglob,
- msestatfile,msestream,msestrings,sysutils,msegraphedits,msescrollbar, msefileutils,
- msemenuwidgets,msegrids,msewidgetgrid,msebitmap,msedatanodes,msefiledialog,
- mselistbrowser,msesys;
+ msestatfile,msestream,msestrings,sysutils,msegraphedits,msescrollbar,
+ msefileutils,msemenuwidgets,msegrids,msewidgetgrid,msebitmap,msedatanodes,
+ msefiledialog,mselistbrowser,msesys;
 
 type
  tmainfo = class(tmainform)
@@ -24,6 +24,8 @@ type
    tmainmenuwidget1: tmainmenuwidget;
    demogrid: tstringgrid;
    sakitdir: tfilenameedit;
+   twidgetgrid1: twidgetgrid;
+   tbutton3: tbutton;
  procedure loadassistive(const sender: TObject);
  procedure unloadassistive(const sender: TObject);
  end;
