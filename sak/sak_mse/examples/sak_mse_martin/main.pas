@@ -33,6 +33,8 @@ type
    tfacecomp2: tfacecomp;
    tfacecomp1: tfacecomp;
    tframecomp3: tframecomp;
+   tdropdownitemedit1: tdropdownitemedit;
+   tenumedit1: tenumedit;
    procedure loadassistive(const sender: TObject);
    procedure unloadassistive(const sender: TObject);
    procedure setusekeybuffer(const sender: TObject; var avalue: Boolean;
@@ -52,7 +54,7 @@ uses
     x := random(3);
     case x of
       0: Result := ' €';
-      1: Result := ' £';
+      1: Result := ' £'; 
       2: Result := ' $';
     end;
   end;

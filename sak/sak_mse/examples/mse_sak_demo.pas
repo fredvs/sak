@@ -8,6 +8,6 @@ uses
  msegui,main;
 begin
  application.createform(tmainfo,mainfo);
- 
+  
  application.run;
 end.

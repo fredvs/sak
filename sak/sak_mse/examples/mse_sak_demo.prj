@@ -49,8 +49,11 @@ findinfiledialog=47
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=ac_sr_exited_normally
+ value=syntaxpainter
  history=10
+  syntaxpainter
+  sdef
+  keyworddefs
   ac_sr_exited_normally
   exited normally
   unableopen
@@ -58,9 +61,6 @@ findinfiledialog=47
   sakitdir.value
   sakdir.value
   /usr/local/share/
-  assistiveserver
-  dochange
-  doente
  [findinfileadialogfo]
  stackedunder=
  x=268
@@ -195,10 +195,10 @@ options=110
  sortdescend1=0
  [projectoptionsfo.ttabwidget2]
  firsttab=0
- index=0
+ index=1
  [projectoptionsfo.tabwidget]
  firsttab=0
- index=2
+ index=0
  [projectoptionsfo]
  stackedunder=
  x=151
@@ -238,6 +238,12 @@ settings=13
  wsize=0
  active=1
  visible=1
+colordialog=5
+ [colordialogfo]
+ x=140
+ y=234
+ cx=338
+ cy=298
 mainfile=${PROJECTNAME}.pas
 targetfile=${PROJECTNAME}${EXEEXT}
 messageoutputfile=
@@ -421,12 +427,15 @@ settingsstorage=0
 settingsprojecttree=0
 settingsautoload=0
 settingsautosave=0
-modulenames=1
+modulenames=2
  SAK_DEMO
-moduletypes=1
+ SOURCEPAGE
+moduletypes=2
  TMAINFO
-modulefiles=1
+ TSOURCEPAGE
+modulefiles=2
  /home/fred/sak/sak/sak_mse/examples/main.mfm
+ /home/fred/ideu/src/sourcepage.mfm
 befcommandon=0
 makeoptionson=5
  63
@@ -489,7 +498,7 @@ sourcefilemasks=3
  "*.c" "*.cc" "*.h"
  "*.mfm"
 syntaxdeffiles=3
- ${SYNTAXDEFDIR}pascal.sdef
+ ${SYNTAXDEFDIR}pascal_ideu.sdef
  ${SYNTAXDEFDIR}cpp.sdef
  ${SYNTAXDEFDIR}objecttext.sdef
 filemasknames=3
@@ -617,7 +626,7 @@ path=1
 line=1
  67
 address=1
- 4542096
+ 4573905
 addbkpt=1
  0
 ignore=1
@@ -653,10 +662,11 @@ progparamhistory=0
 workdirparamhistory=0
 envvarons=0
 [edit]
-hintwidth=314
+hintwidth=270
 hintheight=19
-finddtext=Unable to find
+finddtext=docell
 findhistory=10
+ docell
  Unable to find
  fred
  CompareWideString
@@ -666,19 +676,21 @@ findhistory=10
  docellevent
  espeak_Key
  case
- column
 findoptions=1
-editpos=10
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 10,369
+editpos=13
  0,-1073741823
  0,-1073741823
  0,-1073741823
  0,-1073741823
  0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,1651
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,1034
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -689,29 +701,40 @@ bookmarks6=0
 bookmarks7=0
 bookmarks8=0
 bookmarks9=0
-sourcefiles=10
+bookmarks10=0
+bookmarks11=0
+bookmarks12=0
+sourcefiles=13
  ${PROJECTDIR}/main.pas
  ${PROJECTDIR}/sak_mse.pas
  ${PROJECTDIR}/mse_sak_demo.pas
  ${PROJECTDIR}/main.pas
- /home/fred/ideu/src/actionsmodule.pas
- /home/fred/ideu/src/actionsmodule.mfm
- ${PROJECTDIR}/main.pas
  ${PROJECTDIR}/mse_sak_demo.pas
- ${PROJECTDIR}/main.pas
- /home/fred/msegui/lib/common/kernel/mseactions.pas
-relpaths=10
+ /home/fred/msegui/lib/common/editwidgets/msedataedits.pas
+ /home/fred/ide/syntaxdefs/pascal.sdef
+ /home/fred/ideu/src/sourceform.mfm
+ /home/fred/ideu/src/sourcepage.pas
+ /home/fred/ideu/src/sourceform.pas
+ /home/fred/ideu/src/syntaxdefs/pascal_ideu.sdef
+ /home/fred/msegui/lib/common/kernel/msegui.pas
+ ${PROJECTDIR}/sak_mse.pas
+relpaths=13
  main.pas
  sak_mse.pas
  mse_sak_demo.pas
  main.pas
- ../../../ideu/src/actionsmodule.pas
- ../../ideu/src/actionsmodule.mfm
- main.pas
  mse_sak_demo.pas
- main.pas
- ../msegui/lib/common/kernel/mseactions.pas
-ismoduletexts=10
+ msegui/lib/common/editwidgets/msedataedits.pas
+ ide/syntaxdefs/pascal.sdef
+ ideu/src/sourceform.mfm
+ ../../../ideu/src/sourcepage.pas
+ ideu/src/sourceform.pas
+ ../../ideu/src/syntaxdefs/pascal_ideu.sdef
+ msegui/lib/common/kernel/msegui.pas
+ sak_mse.pas
+ismoduletexts=13
+ 0
+ 0
  0
  0
  0
@@ -722,48 +745,56 @@ ismoduletexts=10
  0
  0
  0
-modules=1
+ 0
+modules=2
  /home/fred/sak/sak/sak_mse/examples/main.mfm
-moduleoptions=1
+ /home/fred/ideu/src/sourcepage.mfm
+moduleoptions=2
  0
-visiblemodules=1
  0
-nomenumodules=1
+visiblemodules=2
+ -1
+ 0
+nomenumodules=2
+ 0
  0
 [sourcefo.tabwidget]
-order=10
+order=13
+ 8
  0
  1
  2
- 8
- 6
- 7
+ 11
  3
  4
- 9
  5
-tabsize=132
+ 6
+ 7
+ 9
+ 10
+ 12
+tabsize=133
 firsttab=0
-index=7
+index=12
 [layout]
-windowlayout=523
+windowlayout=538
  [mainfo.basedock]
  splitdir=2
  useroptions=15488
  [mainfo]
  splitdir=0
  useroptions=123
- stackedunder=
+ stackedunder=_mse_sak_demo_mse_
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=3
- y=24
- cx=1360
- cy=716
+ x=59
+ y=25
+ cx=1143
+ cy=654
  rcx=0
  rcy=0
  wsize=4
@@ -835,7 +866,7 @@ windowlayout=523
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=componentstorefo
+ stackedunder=symbolfo
  parent=
  mdistate=0
  nx=0
@@ -887,15 +918,15 @@ windowlayout=523
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=547
+ propcolwidthref=549
  width0=141
  sortdescend0=0
- width1=541
+ width1=543
  sortdescend1=0
  sorted=0
  col=1
  row=2
- rowheight=18
+ rowheight=17
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -975,7 +1006,7 @@ windowlayout=523
  active=0
  visible=0
  [breakpointsfo.bkptson]
- value=0
+ value=1
  [objectinspectorfo]
  splitdir=0
  useroptions=268451947
@@ -986,8 +1017,8 @@ windowlayout=523
  ny=0
  ncx=0
  ncy=0
- x=883
- y=180
+ x=339
+ y=206
  cx=316
  cy=484
  rcx=0
@@ -1004,7 +1035,7 @@ windowlayout=523
  [symbolfo]
  splitdir=0
  useroptions=268451963
- stackedunder=findinfilefo
+ stackedunder=componentstorefo
  parent=
  mdistate=0
  nx=0
@@ -1090,15 +1121,15 @@ windowlayout=523
  ncx=0
  ncy=0
  x=0
- y=473
- cx=1340
- cy=164
- rcx=1340
- rcy=637
+ y=440
+ cx=1350
+ cy=175
+ rcx=1350
+ rcy=615
  [componentstorefo]
  splitdir=0
  useroptions=268460155
- stackedunder=symbolfo
+ stackedunder=findinfilefo
  parent=
  mdistate=0
  nx=0
@@ -1161,7 +1192,7 @@ windowlayout=523
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=disassfo
+ stackedunder=_mse_sourcepage_mse_
  parent=
  mdistate=0
  nx=0
@@ -1178,7 +1209,7 @@ windowlayout=523
  active=0
  visible=0
  [componentpalettefo.componentpages]
- activetab=0
+ activetab=1
  [debuggerfo]
  splitdir=0
  useroptions=24683
@@ -1191,8 +1222,8 @@ windowlayout=523
  ncy=0
  x=0
  y=0
- cx=1356
- cy=41
+ cx=1358
+ cy=65
  rcx=0
  rcy=0
  [sourcefo]
@@ -1207,19 +1238,15 @@ windowlayout=523
  ncy=0
  x=0
  y=0
- cx=1346
- cy=638
+ cx=1350
+ cy=615
  rcx=0
  rcy=0
- [actionsmo.watchesonact]
- checked=0
- [actionsmo.bluedotsonact]
- checked=1
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=_mse_sak_demo_mse_
+ stackedunder=componentpalettefo
  parent=
  mdistate=0
  nx=0
@@ -1246,15 +1273,15 @@ windowlayout=523
  ncx=0
  ncy=0
  x=0
- y=44
- cx=1356
- cy=638
+ y=68
+ cx=1358
+ cy=615
  rcx=0
  rcy=0
  [_mse_sak_demo_mse_]
  splitdir=0
  useroptions=268451963
- stackedunder=componentpalettefo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1265,6 +1292,25 @@ windowlayout=523
  y=220
  cx=983
  cy=233
+ rcx=0
+ rcy=0
+ wsize=0
+ active=0
+ visible=1
+ [_mse_sourcepage_mse_]
+ splitdir=0
+ useroptions=268451963
+ stackedunder=disassfo
+ parent=
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=192
+ y=245
+ cx=321
+ cy=228
  rcx=0
  rcy=0
  wsize=0

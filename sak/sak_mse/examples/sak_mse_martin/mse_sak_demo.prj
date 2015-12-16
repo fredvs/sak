@@ -17,8 +17,8 @@ order14=0
 order15=0
 order16=0
 [projectoptions]
-projectdir=/Z:/home/fred/sak/sak/sak_mse/examples
-projectfilename=/Z:/home/fred/sak/sak/sak_mse/examples/mse_sak_demo.prj
+projectdir=/home/fred/sak/sak/sak_mse/examples/sak_mse_martin
+projectfilename=/home/fred/sak/sak/sak_mse/examples/sak_mse_martin/mse_sak_demo.prj
 findinfiledialog=39
  [findinfileadialogfo.subdirs]
  value=1
@@ -199,6 +199,12 @@ settings=13
  wsize=0
  active=1
  visible=1
+compnamedialog=5
+ [compnametreefo]
+ x=533
+ y=270
+ cx=300
+ cy=203
 mainfile=${PROJECTNAME}.pas
 targetfile=${PROJECTNAME}${EXEEXT}
 messageoutputfile=
@@ -382,9 +388,12 @@ settingsstorage=0
 settingsprojecttree=0
 settingsautoload=0
 settingsautosave=0
-modulenames=0
-moduletypes=0
-modulefiles=0
+modulenames=1
+ SAK_DEMO
+moduletypes=1
+ TMAINFO
+modulefiles=1
+ /home/fred/sak/sak/sak_mse/examples/sak_mse_martin/main.mfm
 befcommandon=0
 makeoptionson=5
  63
@@ -412,6 +421,7 @@ toolsave=0
 toolhide=0
 toolparse=0
 toolmessages=0
+toolshortcuts=0
 fontalias=0
 fontancestors=0
 fontheights=0
@@ -484,6 +494,7 @@ editfontantialiased=1
 editmarkbrackets=1
 backupfilecount=2
 encoding=1
+trimtrailingwhitespace=0
 codetemplatedirs=1
  ${TEMPLATEDIR}
 debugcommand=${DEBUGGER}
@@ -501,6 +512,7 @@ afterconnect=
 beforeload=
 afterload=
 beforerun=
+sourcebase=
 sourcedirs=4
  ${MSEDIR}lib/addon/*/
  ${MSEDIR}lib/common/kernel/$TARGETOSDIR/
@@ -525,6 +537,7 @@ startupbkpt=0
 startupbkpton=0
 gdbsimulator=0
 gdbserverstartonce=0
+gdbloadtimeout=
 gdbserverwait=0
 nogdbserverexit=0
 gdbservertty=0
@@ -533,6 +546,7 @@ exceptclassnames=1
 exceptignore=1
  0
 nodebugbeginend=0
+fpcgdbworkaround=1
 sigsettings=27
  1,1,T,F
  3,3,T,F
@@ -585,12 +599,12 @@ line=6
  332
  16234
 address=6
- 4555854
- 6898365
- 6898591
- 6898997
- 6898820
- 4520500
+ 4541732
+ 6699538
+ 6699728
+ 6699877
+ 6699836
+ 4504330
 addbkpt=6
  0
  0
@@ -627,7 +641,7 @@ files=
  a=0,4132,6,Text Files
  )
 [componentstore]
-storedir=/Z:/home/fred/Téléchargements/mseide-mseguiwin.git/apps/ide/compstore/
+storedir=/home/fred/msegui/apps/ide/compstore/
 filename=
 [components]
 [selecteditpage]
@@ -638,6 +652,7 @@ cx=704
 cy=473
 [progparams]
 progparamhistory=0
+workdirparamhistory=0
 envvarons=0
 [edit]
 hintwidth=0
@@ -655,7 +670,7 @@ findhistory=10
  sak is
  procfinished
 findoptions=1
-editpos=27
+editpos=22
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -669,6 +684,7 @@ editpos=27
  0,-1073741823
  0,-1073741823
  0,-1073741823
+ 63,42
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -677,12 +693,6 @@ editpos=27
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 5,393
- 0,-1073741823
- 0,0
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -705,12 +715,7 @@ bookmarks18=0
 bookmarks19=0
 bookmarks20=0
 bookmarks21=0
-bookmarks22=0
-bookmarks23=0
-bookmarks24=0
-bookmarks25=0
-bookmarks26=0
-sourcefiles=27
+sourcefiles=22
  ${PROJECTDIR}/sak_mse_fred/main.mfm
  /home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveclient.pas
  /home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveserver.pas
@@ -720,25 +725,20 @@ sourcefiles=27
  ${PROJECTDIR}/main.mfm
  ${PROJECTDIR}/mse_sak_demo.pas
  ${PROJECTDIR}/main.mfm
- ${PROJECTDIR}/monitor_sak/main.mfm
- /home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/msetimer.pas
- /home/fred/ideu/src/sak_mse_martin.pas
  ${PROJECTDIR}/mse_sak_demo.pas
  ${PROJECTDIR}/sak_mse.pas
  ${PROJECTDIR}/mse_sak_demo.pas
- ${PROJECTDIR}/sak_mse_fred/sak_mse.pas
- /home/fred/Téléchargements/mseide-msegui.git/lib/common/sysutils/mseprocess.pas
  ${PROJECTDIR}/main.pas
+ ${PROJECTDIR}/sak_mse_martin/sak_mse.pas
  ${PROJECTDIR}/main.pas
- ${PROJECTDIR}/sak_mse.pas
- ${PROJECTDIR}/main.pas
- ${PROJECTDIR}/main.mfm
  ${PROJECTDIR}/sak_mse.pas
  /home/fred/sak/sak/sak_mse/src/sak_mse.pas
  /home/fred/Téléchargements/mseide-msegui.git/lib/common/sysutils/mseprocutils.pas
- /Z:/home/fred/sak/sak/sak_mse/examples/main.pas
- /Z:/home/fred/sak/sak/sak_mse/examples/main.mfm
-relpaths=27
+ ${PROJECTDIR}/main.pas
+ ${PROJECTDIR}/main.pas
+ ${PROJECTDIR}/main.pas
+ ${PROJECTDIR}/mse_sak_demo.pas
+relpaths=22
  sak_mse_fred/main.mfm
  Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveclient.pas
  home/fred/Téléchargements/mseide-msegui.git/lib/common/kernel/mseassistiveserver.pas
@@ -748,25 +748,20 @@ relpaths=27
  main.mfm
  mse_sak_demo.pas
  main.mfm
- monitor_sak/main.mfm
- Téléchargements/mseide-msegui.git/lib/common/kernel/msetimer.pas
- ideu/src/sak_mse_martin.pas
  mse_sak_demo.pas
  sak_mse.pas
  mse_sak_demo.pas
- sak_mse_fred/sak_mse.pas
- Téléchargements/mseide-msegui.git/lib/common/sysutils/mseprocess.pas
- sak_mse_fred/main.pas
  main.pas
  sak_mse.pas
  main.pas
- main.mfm
  sak_mse.pas
  src/sak_mse.pas
- ../../../../../../../home/fred/Téléchargements/mseide-msegui.git/lib/common/sysutils/mseprocutils.pas
+ home/fred/Téléchargements/mseide-msegui.git/lib/common/sysutils/mseprocutils.pas
  main.pas
- main.mfm
-ismoduletexts=27
+ main.pas
+ main.pas
+ mse_sak_demo.pas
+ismoduletexts=22
  -1
  0
  0
@@ -776,7 +771,6 @@ ismoduletexts=27
  -1
  0
  -1
- -1
  0
  0
  0
@@ -788,18 +782,18 @@ ismoduletexts=27
  0
  0
  0
- -1
  0
  0
+modules=1
+ /home/fred/sak/sak/sak_mse/examples/sak_mse_martin/main.mfm
+moduleoptions=1
  0
+visiblemodules=1
  0
- -1
-modules=0
-moduleoptions=0
-visiblemodules=0
-nomenumodules=0
+nomenumodules=1
+ 0
 [sourcefo.tabwidget]
-order=27
+order=22
  0
  1
  2
@@ -809,71 +803,24 @@ order=27
  6
  7
  8
- 23
- 24
- 25
- 26
  9
  10
  11
  12
  13
+ 20
+ 21
  14
  15
  16
  17
  18
  19
- 20
- 21
- 22
 tabsize=132
 firsttab=6
-index=12
+index=13
 [layout]
-windowlayout=546
- [mainfo.openform]
- filenames=0
- filehistory=0
- filefilterindex=0
- filefilter=
- filecolwidth=0
- x=0
- y=0
- cx=0
- cy=0
- [mainfo.projectfiledia]
- filenames=1
-  /Z:/home/fred/sak/sak/sak_mse/examples/sak_mse_fred/mse_sak_demo.prj
- lastdir=/Z:/home/fred/sak/sak/sak_mse/examples/sak_mse_fred/
- filehistory=10
-  /Z:/home/fred/sak/sak/sak_mse/examples/sak_mse_fred/mse_sak_demo.prj
-  /Z:/home/fred/sak/sak/sak_mse/examples/mse_sak_demo.prj
-  /Z:/home/fred/ideu/src/ideU.prj
-  /Z:/home/fred/assistive/mse_sak_demo.prj
-  /Z:/home/fred/assistive/monitor/assistivemonitor.prj
-  /Z:/home/fred/designer_ext/src/designer_ext.prj
-  /C:/ideu/src/ideU.prj
-  /C:/Program Files (x86)/msegui.org/MSEide+MSEgui/apps/ideu/src/ideU.prj
-  /C:/Program Files (x86)/msegui.org/MSEide+MSEgui/apps/ide/mseide.prj
-  /C:/Program Files (x86)/msegui.org/MSEide+MSEgui/apps/ide/mseide_zeos.prj
- filefilterindex=0
- filefilter=*.prj
- filecolwidth=174
- x=0
- y=0
- cx=0
- cy=0
- [mainfo.openfile]
- filenames=0
- filehistory=0
- filefilterindex=0
- filefilter=
- filecolwidth=0
- x=0
- y=0
- cx=0
- cy=0
+windowlayout=519
  [mainfo.basedock]
  splitdir=2
  useroptions=15488
@@ -887,9 +834,9 @@ windowlayout=546
  ny=0
  ncx=0
  ncy=0
- x=276
- y=58
- cx=636
+ x=330
+ y=90
+ cx=773
  cy=538
  rcx=0
  rcy=0
@@ -898,7 +845,7 @@ windowlayout=546
  visible=1
  [targetconsolefo]
  splitdir=0
- useroptions=16489
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -916,7 +863,7 @@ windowlayout=546
  visible=0
  [threadsfo]
  splitdir=0
- useroptions=16489
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -934,8 +881,8 @@ windowlayout=546
  visible=0
  [memoryfo]
  splitdir=0
- useroptions=16507
- stackedunder=cpui386fo
+ useroptions=268451963
+ stackedunder=cpuc86_64fo
  parent=
  mdistate=0
  nx=0
@@ -961,7 +908,7 @@ windowlayout=546
  value=0
  [disassfo]
  splitdir=0
- useroptions=16491
+ useroptions=268451947
  stackedunder=componentstorefo
  parent=
  mdistate=0
@@ -980,8 +927,8 @@ windowlayout=546
  visible=0
  [findinfilefo]
  splitdir=0
- useroptions=16491
- stackedunder=symbolfo
+ useroptions=268451947
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -996,7 +943,7 @@ windowlayout=546
  rcy=0
  [projecttreefo]
  splitdir=0
- useroptions=16491
+ useroptions=268451947
  stackedunder=memoryfo
  parent=
  mdistate=0
@@ -1014,18 +961,18 @@ windowlayout=546
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=547
+ propcolwidthref=549
  width0=141
  sortdescend0=0
- width1=541
+ width1=543
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=16
+ rowheight=17
  [stackfo]
  splitdir=0
- useroptions=24681
+ useroptions=268460137
  parent=
  mdistate=0
  nx=0
@@ -1043,7 +990,7 @@ windowlayout=546
  visible=0
  [watchpointsfo]
  splitdir=0
- useroptions=16489
+ useroptions=268451945
  parent=
  mdistate=0
  nx=0
@@ -1084,7 +1031,7 @@ windowlayout=546
  sortdescend6=0
  [breakpointsfo]
  splitdir=0
- useroptions=16491
+ useroptions=268451947
  stackedunder=projecttreefo
  parent=
  mdistate=0
@@ -1105,17 +1052,17 @@ windowlayout=546
  value=0
  [objectinspectorfo]
  splitdir=0
- useroptions=16491
- stackedunder=componentpalettefo
+ useroptions=268451947
+ stackedunder=breakpointsfo
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=883
- y=179
- cx=316
+ x=687
+ y=87
+ cx=471
  cy=484
  rcx=0
  rcy=0
@@ -1123,15 +1070,15 @@ windowlayout=546
  active=0
  visible=0
  [objectinspectorfo.grid]
- propcolwidthref=306
- width0=100
+ propcolwidthref=461
+ width0=306
  sortdescend0=0
- width1=200
+ width1=149
  sortdescend1=0
  [symbolfo]
  splitdir=0
- useroptions=16507
- stackedunder=mainfo
+ useroptions=268451963
+ stackedunder=findinfilefo
  parent=
  mdistate=0
  nx=0
@@ -1171,7 +1118,7 @@ windowlayout=546
  [symbolfo.symbol]
  [watchfo]
  splitdir=0
- useroptions=24681
+ useroptions=268460137
  parent=
  mdistate=0
  nx=0
@@ -1208,7 +1155,7 @@ windowlayout=546
  value=1
  [messagefo]
  splitdir=0
- useroptions=49259
+ useroptions=268484715
  parent=mainfo.panel1.container
  visible=1
  mdistate=0
@@ -1217,15 +1164,15 @@ windowlayout=546
  ncx=0
  ncy=0
  x=0
- y=552
- cx=1346
- cy=97
+ y=542
+ cx=1350
+ cy=94
  rcx=0
  rcy=0
  [componentstorefo]
  splitdir=0
- useroptions=24699
- stackedunder=findinfilefo
+ useroptions=268460155
+ stackedunder=symbolfo
  parent=
  mdistate=0
  nx=0
@@ -1253,41 +1200,41 @@ windowlayout=546
  [componentstorefo.storefiledialog]
  filenames=1
   /home/mse/test/msegui/apps/ide/compstore/
- lastdir=/home/mse/test/msegui/apps/ide/compstore/
- filehistory=0
- filefilterindex=0
- filefilter=
  filecolwidth=0
  x=0
  y=0
  cx=0
  cy=0
+ lastdir=/home/mse/test/msegui/apps/ide/compstore/
+ filehistory=0
+ filefilterindex=0
+ filefilter=
  [componentstorefo.groupfiledialog]
  filenames=1
   /home/mse/test/msegui/apps/ide/compstore/
- lastdir=/home/mse/test/msegui/apps/ide/compstore/
- filehistory=0
- filefilterindex=0
- filefilter=
  filecolwidth=0
  x=0
  y=0
  cx=0
  cy=0
+ lastdir=/home/mse/test/msegui/apps/ide/compstore/
+ filehistory=0
+ filefilterindex=0
+ filefilter=
  [componentstorefo.compfiledialog]
  filenames=0
+ filecolwidth=0
+ x=0
+ y=0
+ cx=0
+ cy=0
  lastdir=
  filehistory=0
  filefilterindex=0
  filefilter=
- filecolwidth=0
- x=0
- y=0
- cx=0
- cy=0
  [componentpalettefo]
  splitdir=0
- useroptions=24683
+ useroptions=268460139
  stackedunder=disassfo
  parent=
  mdistate=0
@@ -1305,7 +1252,7 @@ windowlayout=546
  active=0
  visible=0
  [componentpalettefo.componentpages]
- activetab=2
+ activetab=1
  [debuggerfo]
  splitdir=0
  useroptions=24683
@@ -1318,8 +1265,8 @@ windowlayout=546
  ncy=0
  x=0
  y=0
- cx=1356
- cy=33
+ cx=1358
+ cy=44
  rcx=0
  rcy=0
  [sourcefo]
@@ -1334,29 +1281,25 @@ windowlayout=546
  ncy=0
  x=0
  y=0
- cx=1346
- cy=549
+ cx=1350
+ cy=539
  rcx=0
  rcy=0
- [actionsmo.watchesonact]
- checked=1
- [actionsmo.bluedotsonact]
- checked=1
- [cpui386fo]
+ [cpuc86_64fo]
  irqoff=0
  splitdir=0
- useroptions=16491
- stackedunder=objectinspectorfo
+ useroptions=268451947
+ stackedunder=_mse_sak_demo_mse_
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=337
- y=295
- cx=273
- cy=207
+ x=183
+ y=113
+ cx=352
+ cy=277
  rcx=0
  rcy=0
  wsize=0
@@ -1364,7 +1307,7 @@ windowlayout=546
  visible=0
  [mainfo.panel1]
  splitdir=2
- useroptions=32235
+ useroptions=805338603
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1373,11 +1316,30 @@ windowlayout=546
  ncx=0
  ncy=0
  x=0
- y=36
- cx=1356
- cy=649
+ y=47
+ cx=1358
+ cy=636
  rcx=0
  rcy=0
+ [_mse_sak_demo_mse_]
+ splitdir=0
+ useroptions=268451963
+ stackedunder=componentpalettefo
+ parent=
+ mdistate=0
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=18
+ y=198
+ cx=663
+ cy=241
+ rcx=0
+ rcy=0
+ wsize=0
+ active=0
+ visible=0
 [targetconsole]
 finddtext=
 findhistory=0
