@@ -37,19 +37,19 @@ unit sak_mse;
     }
 
 interface
+
 uses
- msetypes, mseglob, mseguiglob, mseguiintf, mseapplication, msestat, msemenus, 
-  msemenuwidgets, msegui, process, msetabs,mclasses, 
-  msegraphics, msegraphutils, mseevent, mseclasses, msewidgets, mseforms, 
-  msetimer,mseassistiveserver,mseassistiveclient, msegrids, msestrings,
-  msesimplewidgets,msedataedits, mseedit, msekeyboard, msefileutils,
-  mseificomp, mseificompglob, mseifiglob, msestatfile, msestream, sysutils, msedispwidgets,
-  mseact,
-  msegraphedits, msescrollbar, msewidgetgrid, msetoolbar,msebitmap,mseshapes,
-  math, classes, mseprocess,msesysintf,msesys
-   {$IF DEFINED(unix)}
+  msetypes, mseglob, mseguiglob, mseguiintf, mseapplication, msestat, msemenus, msemenuwidgets, msegui,
+  msegraphics, msegraphutils, mseevent, mseclasses, msewidgets, mseforms, msetimer, msetabs,
+   mseassistiveserver,mseassistiveclient, msegrids, msestrings, msesimplewidgets,
+  msedataedits, mseedit, msekeyboard, msefileutils, msestringcontainer,msedispwidgets,
+  mseificomp, mseificompglob, mseifiglob, msestatfile, msestream, SysUtils, mseact,
+  msegraphedits, msescrollbar, msewidgetgrid, msetoolbar,msebitmap,mseshapes, mseprocess,
+  Math, Classes, Process
+  {$IF not DEFINED(Windows)}
   , baseunix
-       {$endif};
+       {$endif}  ;
+
 (*
 {$define darwin}
 {$define freebsd}
@@ -100,6 +100,9 @@ type
   TheWord: msestring;  //// use F11 key in memo
   TheSentence: msestring;   //// use F10 key in memo
   TheLastSentence: msestring;  //// use F10 key in memo
+  TheLastCell: gridcoordty;
+  TheCell: msestring;
+  TheTypCell : integer;
 
   isentered: boolean;
   
@@ -113,8 +116,9 @@ type
                             const items: shapeinfoarty; const aindex: integer);
     procedure doitementer(const sender: iassistiveclient;
                          const items: menucellinfoarty; const aindex: integer);
-    procedure docellevent(const sender: iassistiveclientgrid; 
-                                      const info: celleventinfoty);
+   procedure docellevent(const sender: iassistiveclientgrid; 
+                                    const info: celleventinfoty);
+    procedure ontimercell(const Sender: TObject);                               
     procedure ontimerkey(const Sender: TObject);
     procedure ontimermouse(const Sender: TObject);
     procedure ontimerenter(const Sender: TObject);
@@ -188,7 +192,7 @@ function SakCancel: integer;
 implementation
 
 uses
-  typinfo, mseactions;
+  typinfo, mclasses, mseactions, mseformatstr, msegridsglob;
   
 /////////////////////////// Capture Assistive Procedures
 
@@ -359,13 +363,12 @@ if (Sender is tbooleaneditradio) then
    if tbooleanedit(sender).value = false then stringtemp := 'false' else stringtemp := 'true';
        Result := ' changed to ' + stringtemp ;
   end
-  else
+   else
   if (sender is tenumedit) then 
   begin
   result:= ' changed to ' + (tenumedit(sender).enumname(tenumedit(sender).value));
   end
   else
-  
    if (Sender is tslider) then
     Result := ' changed position to ' + inttostr(round(tslider(sender).value * 100)) + ' ,%' ;
 end;
@@ -377,9 +380,12 @@ procedure checkgrid();
   if (Sender is Tcustomstringgrid) then begin
    with tcustomstringgrid(Sender) do begin
     if focusedcellvalid then begin
+    if col > 0 then
      Result := Result + ', column  ' +
               IntToStr(col) + ' , row  ' + 
-              IntToStr(row) + '. ' + items[focusedcell]; 
+              IntToStr(row) + '. ' + items[focusedcell] else
+     Result := Result + ' , row  ' + 
+              IntToStr(row) + '. ' + items[focusedcell];
      end;
    end;
   end;
@@ -417,7 +423,7 @@ begin  /// backspace
 
      key_Backtab: Result := 'back tab';
 
-      key_Up:
+     key_Up:
       begin
        if (Sender is Tstringgrid) or (Sender is Tcustomstringgrid) then checkgrid() else Result := 'up' ;
          end;
@@ -450,7 +456,7 @@ begin  /// backspace
       key_F3: Result := 'f, 3';
       key_F4: Result := 'f, 4';
       key_F5: Result := 'f, 5';
-      key_F12: Result := 'f, 12';
+      key_F6: Result := 'f, 6';
       key_F7: Result := 'f, 7';
       key_F8: Result := 'f, 8';
       key_F9: if (CheckObject is TMemoedit) then
@@ -466,7 +472,7 @@ begin  /// backspace
                    result := thesentence
                   else result := 'f, 11';
            
-      key_F6: if (Sender is TMemoedit) then
+      key_F12: if (Sender is TMemoedit) then
           with Sender as TMemoedit do
               begin
               //  SAKSetVoice(2,'',165,-1,-1);
@@ -529,26 +535,30 @@ begin
     if (trim(TButton(Sender).hint) <> '') then
       Result := 'button, ' + TButton(Sender).hint;
   end
-  else if (Sender is Tenumedit) then  
-   Result := 'combo box, ' + Tenumedit(Sender).Name
   else
-   if (Sender is Ttabwidget) then  
-   Result := 'tab, ' + Ttabwidget(Sender).Name
-  else
-  if (Sender is TStringEdit) then
+ if (Sender is TStringEdit) then
     Result := 'edit, ' + TStringEdit(Sender).Name
   else
   if (Sender is TMemoEdit) then
     Result := 'memo, ' + TMemoEdit(Sender).Name
   else
   if (Sender is Twidgetgrid) then
-    Result := 'widget grid, ' + Twidgetgrid(Sender).Name
+    Result := 'page, ' + Twidgetgrid(Sender).Name
   else
    if (Sender is Tstringgrid) then
     Result := 'grid, ' + Tstringgrid(Sender).Name
   else
    if (Sender is Tstringdisp) then
     Result := 'Info panel, ' + Tstringdisp(Sender).value 
+   else
+    if (Sender is tstockglyphbutton) then
+    Result := 'button, ' + tstockglyphbutton(Sender).name
+   else
+    if (Sender is Tenumedit) then  
+   Result := 'combo box, ' + Tenumedit(Sender).Name
+  else
+   if (Sender is Ttabwidget) then  
+   Result := 'tab, ' + Ttabwidget(Sender).Name
   else
   if (Sender is tbooleaneditradio) then
   begin
@@ -566,13 +576,13 @@ begin
   end
    else
    if (Sender is ttoolbar) then
-    Result := 'tool bar, ' + ttoolbar(Sender).Name
+    Result := 'tool bar, ' + ttoolbar(Sender).name
   else
   if (Sender is tslider) then
     Result := 'slider, ' + Tslider(Sender).Name
   else 
     if (Sender is ttoolbutton) then
-    Result := 'toolbutton, ' +  ttoolbutton(Sender).hint
+    Result := 'tool button, ' +  ttoolbutton(Sender).hint
   else 
    if (Sender is tmenuitem) then
   begin
@@ -776,9 +786,6 @@ end;
 function checksakactive(const raiseexception: boolean = false): boolean;
 begin
  result:= sak <> nil;
-// if not result and raiseexception then begin
-//  raise esakerror.create('SAK not acitve');
-// end;
 end;
 
 procedure TSAK.dochange(const sender: iassistiveclient);
@@ -846,7 +853,7 @@ begin
     TheKeyInfo := info;
     thetimer.ontimer := @ontimerkey;
 
-  if (TheSender is Tstringedit) or (TheSender is Tmemoedit)  or (TheSender is twidgetgrid) then  
+  if (TheSender is Tstringedit) or (TheSender is Tmemoedit)  then  
   begin 
    oldlang := voice_language;
       if voice_gender = '' then
@@ -985,17 +992,18 @@ begin
   itementer:= false;
  end;
 
-procedure TSAK.doitementer(const sender: iassistiveclient;
-               const items: shapeinfoarty; const aindex: integer);
+procedure  TSAK.doitementer(const sender: iassistiveclient; //sender can be nil
+                            const items: shapeinfoarty; const aindex: integer);
 begin
-end;
+end;  
 
 procedure TSAK.doitementer(const sender: iassistiveclient;
                         const items: menucellinfoarty; const aindex: integer);
 begin
  if WhatName(Sender.getinstance) <> '' then
   begin
-    thetimer.Enabled := False; isentered := True;
+    thetimer.Enabled := False; 
+    isentered := True;
     TheSender := Sender.getinstance;
     TheMenuInfo := items;
     TheMenuIndex := aindex;
@@ -1011,27 +1019,117 @@ begin
 end;
 
 
+
+// for editor
+
+procedure TSAK.ontimercell(const Sender: TObject);
+var
+ oldlang : msestring;
+  oldspeed, oldgender ,oldpitch, oldvolume : integer;
+begin
+if itementer = false then begin
+  thetimer.Enabled := False;
+   SakCancel;
+if TheTypCell = 1 then begin
+oldlang := voice_language;
+      if voice_gender = '' then
+    oldgender := -1 else
+     if voice_gender = 'm3' then
+    oldgender := 1 else
+     oldgender := 2 ;
+  oldspeed := voice_speed;
+  oldpitch := voice_pitch;
+  oldvolume := voice_volume;
+
+  SAKSetVoice(2,'',150,-1,-1);
+  espeak_Key(TheCell);
+   SAKSetVoice(oldgender,oldlang,oldspeed,oldpitch,oldvolume);
+ end else espeak_Key(TheCell);
+    end;
+end;
+
 procedure TSAK.docellevent(const sender: iassistiveclientgrid; 
                                      const info: celleventinfoty);
 var
- mstr1: msestring;
+ mstr1, mstr2, mstr3: msestring;
 begin
-//{
- with info do begin
-// if eventkind = cek_enter then begin
-   mstr1:= WhatName(grid)+', column' +
-              IntToStr(cell.col) + ' , row  ' + 
-              IntToStr(cell.row) + 'entered';
-  // if info.grid is tcustomstringgrid then begin
- //   mstr1:= mstr1+'. ' + tcustomstringgrid(grid).items[grid.focusedcell]; 
- //  end;
-   SakCancel;
-   espeak_key(mstr1); 
- 
-// end;
- end; 
+ if (Sender.getinstance is Twidgetgrid) then begin
+  thetimer.enabled := false;
+  thetimer.ontimer := @ontimercell;
+  thetimer.interval := 600000;
+	if info.eventkind = cek_keyup then begin  
+
+	mstr1:= sender.getassistivecelltext(info.cell);
+	//mstr1:= ' colum '+ inttostrmse(sender.getassistivecaretindex())+ ' row '+inttostrmse(info.cell.row);
+		if TheLastCell.row > info.cell.row then
+			begin
+			sakCancel;
+			Theword := '';
+			espeak_Key('up') ;
+			TheCell := ' row, '+ inttostrmse(info.cell.row+1) + ' , ' + mstr1;
+			TheTypCell := 0 ;
+    		thetimer.enabled := true;
+			end else
+		if TheLastCell.row < info.cell.row then
+			begin
+			sakCancel;
+			espeak_Key('down') ;
+ 			Theword := '';
+			TheCell := ' row, '+ inttostrmse(info.cell.row+1)  + ' , ' + mstr1;
+			TheTypCell := 0 ;
+    		thetimer.enabled := true;
+			end else
+		if length(mstr1) > 0 then
+			begin 
+			mstr2 := mstr1[sender.getassistivecaretindex()] ;
+			
+			if sender.getassistivecaretindex() < TheLastCell.col then
+			mstr3 := ' colum '+ inttostrmse(sender.getassistivecaretindex()) + ' ' else
+			mstr3 := '';
+  					
+        	if (mstr2 = ' ') or  (mstr2 = '.') or  (mstr2 = ',')  or  (mstr2 = '"') or 
+  			 (mstr2 = '[') or  (mstr2 = ']') or  (mstr2 = '{') or  (mstr2 = '}') then
+   				begin 
+   				sakCancel;
+   				espeak_Key(mstr3 + mstr2) ;
+    		TheCell := ' ' + Theword;
+    		TheTypCell := 1 ;
+    		thetimer.enabled := true;
+   			Theword := '';
+    			end else
+ 			if mstr2 = ';'  then
+   				begin
+   				sakCancel;
+    			espeak_Key(mstr3 +mstr2) ;
+    			TheTypCell := 1 ;
+    			TheCell := mstr1 ;
+    			thetimer.enabled := true;
+      			end  else
+            begin
+    			Theword := Theword + mstr2;
+    			TheTypCell := 0 ;
+    			SakCancel;
+     			espeak_Key(mstr3 + mstr2) ;
+   			end;
+ 		end;
+	TheLastCell.col := sender.getassistivecaretindex() ; 
+	TheLastCell.row := info.cell.row;
+ end else
+ if info.eventkind = cek_mousemove then
+  begin 
+     mstr2:= ' row '+inttostrmse(info.cell.row+1) + ' , ';
+	mstr1 := mstr2 + sender.getassistivecelltext(info.cell);
+ 	Theword := '';
+ 	TheLastCell.col := sender.getassistivecaretindex() ; 
+	TheLastCell.row := info.cell.row;
+	TheTypCell := 0 ;
+	TheCell := mstr1;
+	 thetimer.interval := 300000;
+	 SakCancel;
+    thetimer.enabled := true;
+ end;
+ end;
 end;
-// }
 
 constructor TSAK.Create();
 begin

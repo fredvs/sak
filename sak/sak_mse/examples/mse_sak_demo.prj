@@ -198,7 +198,7 @@ options=110
  index=1
  [projectoptionsfo.tabwidget]
  firsttab=0
- index=0
+ index=1
  [projectoptionsfo]
  stackedunder=
  x=151
@@ -663,7 +663,7 @@ workdirparamhistory=0
 envvarons=0
 [edit]
 hintwidth=270
-hintheight=19
+hintheight=200
 finddtext=docell
 findhistory=10
  docell
@@ -679,7 +679,7 @@ findhistory=10
 findoptions=1
 editpos=13
  0,-1073741823
- 0,-1073741823
+ 32,362
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -690,7 +690,7 @@ editpos=13
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,1034
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -706,7 +706,7 @@ bookmarks11=0
 bookmarks12=0
 sourcefiles=13
  ${PROJECTDIR}/main.pas
- ${PROJECTDIR}/sak_mse.pas
+ /home/fred/sak/sak/sak_mse/examples/sak_mse.pas
  ${PROJECTDIR}/mse_sak_demo.pas
  ${PROJECTDIR}/main.pas
  ${PROJECTDIR}/mse_sak_demo.pas
@@ -717,7 +717,7 @@ sourcefiles=13
  /home/fred/ideu/src/sourceform.pas
  /home/fred/ideu/src/syntaxdefs/pascal_ideu.sdef
  /home/fred/msegui/lib/common/kernel/msegui.pas
- ${PROJECTDIR}/sak_mse.pas
+ /home/fred/msegui/lib/common/kernel/mseassistiveclient.pas
 relpaths=13
  main.pas
  sak_mse.pas
@@ -729,9 +729,9 @@ relpaths=13
  ideu/src/sourceform.mfm
  ../../../ideu/src/sourcepage.pas
  ideu/src/sourceform.pas
- ../../ideu/src/syntaxdefs/pascal_ideu.sdef
+ ideu/src/syntaxdefs/pascal_ideu.sdef
  msegui/lib/common/kernel/msegui.pas
- sak_mse.pas
+ msegui/lib/common/kernel/mseassistiveclient.pas
 ismoduletexts=13
  0
  0
@@ -762,8 +762,9 @@ nomenumodules=2
 order=13
  8
  0
- 1
  2
+ 1
+ 12
  11
  3
  4
@@ -772,10 +773,9 @@ order=13
  7
  9
  10
- 12
 tabsize=133
 firsttab=0
-index=12
+index=3
 [layout]
 windowlayout=538
  [mainfo.basedock]
@@ -784,15 +784,15 @@ windowlayout=538
  [mainfo]
  splitdir=0
  useroptions=123
- stackedunder=_mse_sak_demo_mse_
+ stackedunder=
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=59
- y=25
+ x=139
+ y=28
  cx=1143
  cy=654
  rcx=0
@@ -885,7 +885,7 @@ windowlayout=538
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=_mse_sak_demo_mse_
  parent=
  mdistate=0
  nx=0
@@ -1035,7 +1035,7 @@ windowlayout=538
  [symbolfo]
  splitdir=0
  useroptions=268451963
- stackedunder=componentstorefo
+ stackedunder=findinfilefo
  parent=
  mdistate=0
  nx=0
@@ -1121,15 +1121,15 @@ windowlayout=538
  ncx=0
  ncy=0
  x=0
- y=440
+ y=441
  cx=1350
- cy=175
+ cy=174
  rcx=1350
  rcy=615
  [componentstorefo]
  splitdir=0
  useroptions=268460155
- stackedunder=findinfilefo
+ stackedunder=disassfo
  parent=
  mdistate=0
  nx=0
@@ -1281,7 +1281,7 @@ windowlayout=538
  [_mse_sak_demo_mse_]
  splitdir=0
  useroptions=268451963
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1300,17 +1300,17 @@ windowlayout=538
  [_mse_sourcepage_mse_]
  splitdir=0
  useroptions=268451963
- stackedunder=disassfo
+ stackedunder=componentstorefo
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=192
- y=245
- cx=321
- cy=228
+ x=244
+ y=148
+ cx=750
+ cy=218
  rcx=0
  rcy=0
  wsize=0

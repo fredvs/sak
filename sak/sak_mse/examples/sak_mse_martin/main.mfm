@@ -129,10 +129,10 @@ object sak_demo: tmainfo
     scrollbar.face.localprops = []
   end
   object tmemoedit1: tmemoedit
-    frame.localprops = [frl_colorclient]
-    frame.localprops1 = []
     frame.sbhorz.pagesize = 1
     frame.sbvert.pagesize = 1
+    frame.localprops = [frl_colorclient]
+    frame.localprops1 = []
     taborder = 10
     bounds_x = 384
     bounds_y = 8
@@ -368,7 +368,7 @@ object sak_demo: tmainfo
       0
     )
     taborder = 4
-    bounds_x = 128
+    bounds_x = 112
     bounds_y = 43
     bounds_cx = 92
     bounds_cy = 39
@@ -413,53 +413,6 @@ object sak_demo: tmainfo
     textflags = [tf_noselect, tf_ellipseleft]
     controller.options = [fdo_directory, fdo_savelastdir]
     controller.captionopen = 'sakit Installdirectory'
-    reffontheight = 15
-  end
-  object tdropdownitemedit1: tdropdownitemedit
-    frame.caption = 'test'
-    frame.localprops = []
-    frame.localprops1 = []
-    frame.outerframe = (
-      0
-      18
-      0
-      0
-    )
-    taborder = 16
-    bounds_x = 240
-    bounds_y = 30
-    bounds_cy = 39
-    valueedits.count = 6
-    valueedits.items = <    
-      item
-      end    
-      item
-      end    
-      item
-      end    
-      item
-      end    
-      item
-      end    
-      item
-      end>
-    dropdown.cols.count = 1
-    dropdown.cols.items = <    
-      item
-      end>
-    reffontheight = 15
-  end
-  object tenumedit1: tenumedit
-    frame.localprops = []
-    frame.localprops1 = []
-    taborder = 17
-    bounds_x = 288
-    bounds_y = 88
-    bounds_cy = 21
-    dropdown.cols.count = 1
-    dropdown.cols.items = <    
-      item
-      end>
     reffontheight = 15
   end
   object tstatfile1: tstatfile
