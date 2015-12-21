@@ -1,14 +1,14 @@
 object sak_demo: tmainfo
-  bounds_x = 137
-  bounds_y = 220
-  bounds_cx = 973
+  bounds_x = 252
+  bounds_y = 242
+  bounds_cx = 653
   bounds_cy = 233
   container.frame.localprops = []
   container.frame.localprops1 = []
   container.bounds = (
     0
     0
-    973
+    653
     233
   )
   caption = 'Demo of mse with sak'
@@ -330,50 +330,6 @@ object sak_demo: tmainfo
     bounds_cx = 204
     bounds_cy = 39
     controller.options = [fdo_directory, fdo_savelastdir]
-    reffontheight = 15
-  end
-  object twidgetgrid1: twidgetgrid
-    frame.localprops = []
-    frame.localprops1 = []
-    taborder = 13
-    bounds_x = 672
-    bounds_y = 56
-    bounds_cx = 266
-    bounds_cy = 138
-    fixrows.count = 1
-    fixrows.items = <    
-      item
-        height = 17
-      end>
-    reffontheight = 15
-  end
-  object tbutton3: tbutton
-    taborder = 14
-    bounds_x = 720
-    bounds_y = 24
-    bounds_cx = 50
-    bounds_cy = 21
-    state = [as_localcaption]
-    caption = 'hello'
-  end
-  object type_: tenumedit
-    frame.caption = 'Type'
-    frame.localprops = []
-    frame.localprops1 = []
-    frame.outerframe = (
-      0
-      18
-      0
-      0
-    )
-    taborder = 15
-    bounds_x = 816
-    bounds_y = 6
-    bounds_cy = 39
-    dropdown.cols.count = 1
-    dropdown.cols.items = <    
-      item
-      end>
     reffontheight = 15
   end
 end

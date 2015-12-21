@@ -24,9 +24,6 @@ type
    tmainmenuwidget1: tmainmenuwidget;
    demogrid: tstringgrid;
    sakitdir: tfilenameedit;
-   twidgetgrid1: twidgetgrid;
-   tbutton3: tbutton;
-   type_: tenumedit;
  procedure loadassistive(const sender: TObject);
  procedure unloadassistive(const sender: TObject);
  end;
