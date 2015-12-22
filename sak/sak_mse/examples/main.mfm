@@ -1,14 +1,14 @@
 object sak_demo: tmainfo
   bounds_x = 252
   bounds_y = 242
-  bounds_cx = 653
+  bounds_cx = 884
   bounds_cy = 233
   container.frame.localprops = []
   container.frame.localprops1 = []
   container.bounds = (
     0
     0
-    653
+    884
     233
   )
   caption = 'Demo of mse with sak'
@@ -331,5 +331,17 @@ object sak_demo: tmainfo
     bounds_cy = 39
     controller.options = [fdo_directory, fdo_savelastdir]
     reffontheight = 15
+  end
+  object tbarcode1: tbarcode
+    taborder = 13
+    bounds_x = 712
+    bounds_y = 112
+    bounds_cx = 50
+    bounds_cy = 50
+    fontbar.localprops = []
+  end
+  object tsigdelay1: tsigdelay
+    left = 704
+    top = 64
   end
 end

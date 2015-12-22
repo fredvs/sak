@@ -7,7 +7,7 @@ uses
  msesimplewidgets,msedataedits,mseedit,mseificomp,mseificompglob,mseifiglob,
  msestatfile,msestream,msestrings,sysutils,msegraphedits,msescrollbar,
  msefileutils,msemenuwidgets,msegrids,msewidgetgrid,msebitmap,msedatanodes,
- msefiledialog,mselistbrowser,msesys;
+ msefiledialog,mselistbrowser,msesys,msesignal,msebarcode;
 
 type
  tmainfo = class(tmainform)
@@ -24,6 +24,8 @@ type
    tmainmenuwidget1: tmainmenuwidget;
    demogrid: tstringgrid;
    sakitdir: tfilenameedit;
+   tsigdelay1: tsigdelay;
+   tbarcode1: tbarcode;
  procedure loadassistive(const sender: TObject);
  procedure unloadassistive(const sender: TObject);
  end;

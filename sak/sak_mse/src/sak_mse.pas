@@ -127,6 +127,7 @@ type
     procedure ontimeritementer(const Sender: TObject);
     procedure ontimeritementer2(const Sender: TObject);
     procedure ontimerchange(const Sender: TObject);
+    procedure ontimerfocuschange(const Sender: TObject);
     function LoadLib: integer;
     procedure espeak_key(Text: msestring);
     function WhatName(Sender: TObject): msestring;
@@ -489,8 +490,18 @@ begin
     Result := 'grid, ' + Tstringgrid(Sender).Name
   else
     if (Sender is ttabpage) then
-    Result := 'tab, page, ' + ttabpage(Sender).Name
+    Result := 'tab, page, ' + ttabpage(Sender).caption
   else
+  if (Sender is ttab) then
+    Result := 'tab, ' + ttab(Sender).caption
+  else
+   if (Sender is Ttabwidget) then  
+   Result := 'tabwidget, ' + Ttabwidget(Sender).Name
+  else
+    if (Sender is Ttabbar) then  
+   Result := 'tabbar, ' + Ttabbar(Sender).name + ', ' + 
+   Ttabbar(Sender).tabs[ttabbar(Sender).activetag-1].caption
+   else
    if (Sender is Tstringdisp) then
     Result := 'Info panel, ' + Tstringdisp(Sender).value 
    else
@@ -511,10 +522,7 @@ begin
    else
     if (Sender is Tenumedit) then  
    Result := 'combo box, ' + Tenumedit(Sender).Name
-  else
-   if (Sender is Ttabwidget) then  
-   Result := 'tab, ' + Ttabwidget(Sender).Name
-  else
+   else
   if (Sender is tbooleaneditradio) then
   begin
     if (Tbooleaneditradio(Sender).frame.Caption <> '') then
@@ -532,11 +540,12 @@ begin
    else
    if (Sender is ttoolbar) then
     Result := 'tool bar, ' + ttoolbar(Sender).getassistivehint()
+  //   Result := 'tool bar, ' + Sender.getassistivehint()
   else
   if (Sender is tslider) then
     Result := 'slider, ' + Tslider(Sender).Name
   else 
-    if (Sender is ttoolbutton) then
+  if (Sender is ttoolbutton) then
     Result := 'tool button, ' +  ttoolbutton(Sender).hint
   else 
    if (Sender is tmenuitem) then
@@ -549,12 +558,10 @@ begin
   else 
   if (Sender is tmainmenu) or (Sender is tmainmenuwidget) or (Sender is tmenu) or  (Sender is tcustommenu) or   (Sender is tpopupmenu)  then
      Result :=  'menu, '
-     ;
- //   else 
- //    if (Sender is twidget) then
- //   Result := 'widget, ' + Twidget(Sender).Name ;
+    ;
+ // else  if (Sender is twidget) then Result := Twidget(Sender).Name + ', ' ;
     
-end;
+end; 
 
 ////////////////////// Loading Procedure
 
@@ -988,8 +995,8 @@ end;
 procedure TSAK.clientmouseevent(const sender: iassistiveclient;
                                            const info: mouseeventinfoty);
  begin
-// if itementer = false then
-// begin
+ if itementer = false then
+ begin
   if WhatName(Sender.getinstance) <> '' then
   begin
     TheSender := Sender.getinstance;
@@ -1002,12 +1009,35 @@ procedure TSAK.clientmouseevent(const sender: iassistiveclient;
     thetimer.ontimer := @ontimermouse;
     thetimer.Enabled := True;
   end;
-//  itementer := false;
+end;
+  itementer := false;
+end;
+
+procedure TSAK.ontimerfocuschange(const Sender: TObject);
+begin
+ thetimer.Enabled := false;
+ SakCancel;
+ espeak_Key(WhatName(TheSender) + ' has focus');
+  lastname := WhatName(TheSender);
 end;
 
 procedure TSAK.dofocuschanged(const oldwidget: iassistiveclient; const newwidget: iassistiveclient);
 begin
-
+{
+// if (WhatName(newwidget.getinstance) <> '') 
+ //and (lastname <> WhatName(newwidget.getinstance))
+ //and (newwidget.getinstance is Ttabwidget) 
+ then
+ begin
+    thetimer.Enabled := False; 
+    isentered := True;
+    TheSender := newwidget.getinstance;
+    thetimer.interval := 600000;
+    thetimer.ontimer := @ontimerfocuschange;
+    thetimer.Enabled := True;
+  //  itementer:= true;
+ end;
+}
 end;
 
 procedure TSAK.ontimeritementer(const Sender: TObject);
@@ -1039,7 +1069,7 @@ begin
     thetimer.interval := 300000;
     thetimer.ontimer := @ontimeritementer2;
     thetimer.Enabled := True;
-  //  itementer:= true;
+    itementer:= true;
   end;
 end;  
 
@@ -1053,10 +1083,10 @@ begin
     TheSender := Sender.getinstance;
     TheMenuInfo := items;
     TheMenuIndex := aindex;
-    thetimer.interval := 600000;
+    thetimer.interval := 700000;
     thetimer.ontimer := @ontimeritementer;
     thetimer.Enabled := True;
-    //itementer:= false;
+    itementer:= true;
   end;
 end;
 
