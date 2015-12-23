@@ -684,7 +684,7 @@ bookmarks1=0
 bookmarks2=0
 bookmarks3=0
 sourcefiles=4
- ${PROJECTDIR}/main.pas
+ /home/fred/sak/sak/sak_mse/examples/main.pas
  ${PROJECTDIR}/sak_mse.pas
  ${PROJECTDIR}/mse_sak_demo.pas
  ${PROJECTDIR}/mse_sak_demo.pas
@@ -805,7 +805,7 @@ windowlayout=519
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=symbolfo
+ stackedunder=componentstorefo
  parent=
  mdistate=0
  nx=0
@@ -974,7 +974,7 @@ windowlayout=519
  [symbolfo]
  splitdir=0
  useroptions=268451963
- stackedunder=_mse_sak_demo_mse_
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1068,7 +1068,7 @@ windowlayout=519
  [componentstorefo]
  splitdir=0
  useroptions=268460155
- stackedunder=
+ stackedunder=componentpalettefo
  parent=
  mdistate=0
  nx=0
@@ -1131,7 +1131,7 @@ windowlayout=519
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=mainfo
+ stackedunder=_mse_sak_demo_mse_
  parent=
  mdistate=0
  nx=0
@@ -1146,7 +1146,7 @@ windowlayout=519
  rcy=0
  wsize=0
  active=0
- visible=1
+ visible=0
  [componentpalettefo.componentpages]
  activetab=4
  [debuggerfo]
@@ -1220,7 +1220,7 @@ windowlayout=519
  [_mse_sak_demo_mse_]
  splitdir=0
  useroptions=268451963
- stackedunder=componentpalettefo
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
