@@ -402,11 +402,11 @@ procedure Tsak.UpdateChild(AComp : TComponent) ;
 var
   j : integer ;
 begin
+ with AComp as TComponent do
 
-   with AComp as TComponent do
+          for j := 0 to ComponentCount - 1 do
 
-              for j := 0 to ComponentCount - 1 do
-              begin
+               begin
                 if (Components[j] is TfpgButton) then
                 begin
                   SetLength(sak.AssistiveData, Length(sak.AssistiveData) + 1);
@@ -709,9 +709,9 @@ begin
           UpdateChild(Components[j])
               end;
 
-              end;
+              end; 
 
-end;
+ end; 
 
 
 procedure Tsak.ChildComponentCount(AComponent: TComponent);

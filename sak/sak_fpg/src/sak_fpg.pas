@@ -252,25 +252,25 @@ function Tsak.WhatDeleted(sender : Tobject) : string;
 var
  strline, posword1, posword2 : string;
  pos1 : integer;
-begin
+  begin 
    with sender as Tfpgmemo do
-      begin
+      begin 
            espeak_cancel;
           strline :=  Lines[cursorline];
         posword1 := '';
              pos1 := cursorpos ;
         while (copy(strline,pos1,1) <> ' ') and (pos1 > 0) do
-          begin
+          begin 
         posword1 := copy(strline,pos1,1)   + posword1;
         dec(pos1);
-          end;
+          end; 
 
     //    writeln('chars before pos = ' + posword1);  // the letters before cursor
 
     posword2 := '';
              pos1 := cursorpos +1 ;
         while (copy(strline,pos1,1) <> ' ') and (pos1 < length(strline) +1) do
-          begin
+          begin 
         posword2 := posword2 + copy(strline,pos1,1)  ;
         inc(pos1);
           end;
@@ -899,9 +899,9 @@ begin
   TimerRepeat.Enabled := False;
   espeak_cancel;
   for i := 0 to (Length(sak.AssistiveData) - 1) do
-  begin
+begin
     if (CheckObject = sak.AssistiveData[i].TheObject) then
-    begin
+begin
         if (CheckObject is TfpgTrackBar) then
         with CheckObject as TfpgTrackBar do
           texttmp := Name + ' position is, ' + IntToStr(position);
@@ -955,7 +955,7 @@ begin
   begin
     if (Sender = sak.AssistiveData[i].TheObject) and (sak.AssistiveData[i].OriOnTrackBarChange <> nil) then
     begin
-      sak.AssistiveData[i].OriOnTrackBarChange(Sender, pos);
+      sak.Assistivedata[i].OriOnTrackbarChange(Sender, pos);
       finded := True;
     end;
     Inc(i);
@@ -972,7 +972,7 @@ begin
     espeak_cancel;
   for i := 0 to (Length(sak.AssistiveData) - 1) do
   begin
-    if (CheckObject = sak.AssistiveData[i].TheObject) and (CheckObject is TfpgTrackBar) then
+    if (CheckObject = sak.Assistivedata[i].TheObject) and (CheckObject is TfpgTrackBar) then
     begin
       //  espeak_cancel ;
       with CheckObject as TfpgTrackBar do
@@ -2477,7 +2477,8 @@ begin
           if (Components[i] is TComponent) then
           begin
               UpdateChild(Components[i])  ;
-              end;
+              
+              end; 
 
           end;
         end;
@@ -2538,7 +2539,7 @@ begin
     ChildComponentCount(fpgApplication);
     if (f <> CompCount) then
     begin
-      saksuspend;
+      saksuspendk;
       sakupdate;
       CompCount := f;
     end;
@@ -2668,7 +2669,7 @@ begin
 
  Label3 := TfpgLabel.Create(self);
  with Label3 do
- begin
+ begin 
    Name := 'Label3';
   SetPosition(8, 36, 472, 15);
    Alignment := taCenter;
@@ -2678,7 +2679,7 @@ begin
 
  Label4 := TfpgLabel.Create(self);
  with Label4 do
- begin
+ begin 
    Name := 'Label4';
    SetPosition(8, 54,  472, 15);
    Alignment := taCenter;
@@ -2688,7 +2689,7 @@ begin
 
  Button1 := TfpgButton.Create(self);
  with Button1 do
- begin
+ begin 
    Name := 'Button1';
    SetPosition(144, 80, 80, 23);
    FontDesc := '#Label1';

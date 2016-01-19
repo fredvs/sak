@@ -24,8 +24,6 @@ type
    tmainmenuwidget1: tmainmenuwidget;
    demogrid: tstringgrid;
    sakitdir: tfilenameedit;
-   tsigdelay1: tsigdelay;
-   tbarcode1: tbarcode;
  procedure loadassistive(const sender: TObject);
  procedure unloadassistive(const sender: TObject);
  end;
@@ -39,9 +37,7 @@ uses
   var
     x: integer;
   begin
-  
-   
-      x := random(3);
+     x := random(3);
     case x of
       0: Result := ' €';
       1: Result := ' £';
