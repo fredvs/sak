@@ -118,11 +118,11 @@ var
 
     {@VFD_BODY_BEGIN: form2}
   Name := 'form2';
-  SetPosition(280, 150, 374, 250);
+  SetPosition(260, 150, 374, 250);
   WindowTitle := 'form2';
   IconName := '';
-  Hint := '';
   BackGroundColor := $80000001;
+  Hint := '';
   WindowPosition := wpScreenCenter;
 
   Memo1 := TfpgMemo.Create(self);
@@ -131,14 +131,15 @@ var
     Name := 'Memo1';
     SetPosition(24, 20, 324, 161);
     FontDesc := '#Edit1';
-    Hint := '';
     Lines.Add('The quick brown fox, jumps over the lazy dog...');
     Lines.Add('Please, write something here...');
     Lines.Add('Use F12 key to read all.');
     Lines.Add('Use F11 key to read line.');
     Lines.Add('Use F10 key to read word.');
     Lines.Add('Use Cancel key to stop reading.');
+    ParentShowHint := False;
     TabOrder := 0;
+    Hint := '';
   end;
 
   Button1 := TfpgButton.Create(self);
@@ -146,11 +147,12 @@ var
   begin
     Name := 'Button1';
     SetPosition(140, 196, 80, 23);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 1;
     Text := 'Close';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 1;
+    Hint := '';
     onclick := @closeform2;
   end;
 
@@ -174,8 +176,8 @@ var
   SetPosition(290, 150, 374, 250);
   WindowTitle := 'form3';
   IconName := '';
-  Hint := '';
   BackGroundColor := $80000001;
+  Hint := '';
   WindowPosition := wpScreenCenter;
 
   Test_Grid := TfpgStringGrid.Create(self);
@@ -186,11 +188,12 @@ var
     BackgroundColor := TfpgColor($80000002);
     FontDesc := '#Grid';
     HeaderFontDesc := '#GridHeader';
-    Hint := '';
+    ParentShowHint := False;
     RowCount := 5;
-    ColumnCount := 0;
     RowSelect := False;
     TabOrder := 0;
+    Hint := '';
+    ColumnCount := 0;
     AddColumn('green', 63);
     AddColumn('yellow', 63);
     AddColumn('purple', 63);
@@ -204,11 +207,12 @@ var
   begin
     Name := 'Button1';
     SetPosition(140, 196, 80, 23);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 2;
     Text := 'Close';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 2;
+    Hint := '';
     onclick := @closeform3;
   end;
 
@@ -292,11 +296,10 @@ var
 
     {@VFD_BODY_BEGIN: Assistive}
   Name := 'Assistive';
-  SetPosition(58, 165, 709, 310);
+  SetPosition(98, 165, 709, 310);
   WindowTitle := 'sak is the Speecher Assistive Kit. Use your keyboard to test it...';
   IconName := '';
   Hint := '';
-  BackGroundColor := $80000001;
   WindowPosition := wpScreenCenter;
   Ondestroy := @FreeLib;
 
@@ -305,9 +308,10 @@ var
   begin
     Name := 'Slider';
     SetPosition(200, 275, 200, 24);
-    Hint := '';
     Max := 10;
+    ParentShowHint := False;
     TabOrder := 1;
+    Hint := '';
     OnChange := @ChangePos;
   end;
 
@@ -317,8 +321,9 @@ var
     Name := 'Labelpos';
     SetPosition(165, 275, 30, 24);
     FontDesc := '#Label1';
-    Hint := '';
+    ParentShowHint := False;
     Text := '0';
+    Hint := '';
   end;
 
   FMenuBar := TfpgMenuBar.Create(self);
@@ -382,11 +387,12 @@ var
   begin
     Name := 'Load_sak';
     SetPosition(36, 72, 90, 25);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 0;
     Text := 'Load sak';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 0;
+    Hint := '';
     onclick := @btnloadClick;
   end;
 
@@ -395,12 +401,13 @@ var
   begin
     Name := 'Unload_sak';
     SetPosition(36, 100, 90, 25);
+    Text := 'Unload sak';
     Enabled := False;
     FontDesc := '#Label1';
-    Hint := '';
     ImageName := '';
+    ParentShowHint := False;
     TabOrder := 12;
-    Text := 'Unload sak';
+    Hint := '';
     onclick := @btnUnloadClick;
   end;
 
@@ -410,9 +417,10 @@ var
     Name := 'CheckBox1';
     SetPosition(44, 136, 100, 19);
     FontDesc := '#Label1';
-    Hint := '';
+    ParentShowHint := False;
     TabOrder := 1;
     Text := 'Test';
+    Hint := '';
   end;
 
   Test_me := TfpgButton.Create(self);
@@ -420,11 +428,12 @@ var
   begin
     Name := 'Test_me';
     SetPosition(32, 168, 90, 30);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 2;
     Text := 'Test Me';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 2;
+    Hint := '';
     onclick := @btnTestClick;
   end;
 
@@ -434,8 +443,9 @@ var
     Name := 'Label2';
     SetPosition(32, 204, 90, 30);
     FontDesc := '#Label1';
-    Hint := '';
+    ParentShowHint := False;
     Text := 'Increment = 0';
+    Hint := '';
   end;
 
   number1 := TfpgRadioButton.Create(self);
@@ -446,9 +456,10 @@ var
     Checked := True;
     FontDesc := '#Label1';
     GroupIndex := 0;
-    Hint := '';
+    ParentShowHint := False;
     TabOrder := 3;
     Text := 'Always';
+    Hint := '';
   end;
 
   number2 := TfpgRadioButton.Create(self);
@@ -458,9 +469,10 @@ var
     SetPosition(36, 264, 96, 19);
     FontDesc := '#Label1';
     GroupIndex := 0;
-    Hint := '';
+    ParentShowHint := False;
     TabOrder := 4;
     Text := 'Never';
+    Hint := '';
   end;
 
   Test_text := TfpgMemo.Create(self);
@@ -469,14 +481,15 @@ var
     Name := 'Test_text';
     SetPosition(144, 72, 224, 113);
     FontDesc := '#Edit1';
-    Hint := '';
     Lines.Add('The quick brown fox, jumps over the lazy dog...');
     Lines.Add('Please, write something here...');
     Lines.Add('Use F12 key to read all.');
     Lines.Add('Use F11 key to read line.');
     Lines.Add('Use F10 key to read word.');
     Lines.Add('Use Cancel key to stop reading.');
+    ParentShowHint := False;
     TabOrder := 5;
+    Hint := '';
   end;
 
   Label1 := TfpgLabel.Create(self);
@@ -485,8 +498,9 @@ var
     Name := 'Label1';
     SetPosition(396, 36, 300, 30);
     FontDesc := '#Label1';
-    Hint := '';
+    ParentShowHint := False;
     Text := 'Stringgrid : use arrow keys or enter to speak it...';
+    Hint := '';
   end;
 
   dimension := TfpgStringGrid.Create(self);
@@ -497,11 +511,12 @@ var
     BackgroundColor := TfpgColor($80000002);
     FontDesc := '#Grid';
     HeaderFontDesc := '#GridHeader';
-    Hint := '';
+    ParentShowHint := False;
     RowCount := 5;
-    ColumnCount := 0;
     RowSelect := False;
     TabOrder := 8;
+    Hint := '';
+    ColumnCount := 0;
     AddColumn('maxi', 60);
     AddColumn('extra', 60);
     AddColumn('large', 60);
@@ -517,9 +532,10 @@ var
     SetPosition(396, 210, 288, 24);
     ExtraHint := '';
     FontDesc := '#Edit1';
-    Hint := '';
+    ParentShowHint := False;
     TabOrder := 9;
     Text := 'Write something here. Use F12 key to read it, Cancel key to stop reading...';
+    Hint := '';
   end;
 
   Button3 := TfpgButton.Create(self);
@@ -527,11 +543,12 @@ var
   begin
     Name := 'Button3';
     SetPosition(424, 245, 96, 23);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 10;
     Text := 'Other Form2';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 10;
+    Hint := '';
     onClick := @showform2;
   end;
 
@@ -540,11 +557,12 @@ var
   begin
     Name := 'Button4';
     SetPosition(560, 245, 88, 23);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 11;
     Text := 'Other Form3';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 11;
+    Hint := '';
     onClick := @showform3;
   end;
 
@@ -553,11 +571,12 @@ var
   begin
     Name := 'Button5';
     SetPosition(272, 240, 88, 24);
-    FontDesc := '#Label1';
-    Hint := '';
-    ImageName := '';
-    TabOrder := 11;
     Text := 'File Dialog';
+    FontDesc := '#Label1';
+    ImageName := '';
+    ParentShowHint := False;
+    TabOrder := 11;
+    Hint := '';
     onClick := @btnOpenFileClick;
   end;
 
@@ -567,12 +586,13 @@ var
     Name := 'size_';
     SetPosition(148, 192, 92, 68);
     FontDesc := '#List';
-    Hint := '';
     Items.Add('small');
     Items.Add('medium');
     Items.Add('large');
     Items.Add('extra large');
+    ParentShowHint := False;
     TabOrder := 6;
+    Hint := '';
   end;
 
   color_ := TfpgComboBox.Create(self);
@@ -582,13 +602,14 @@ var
     SetPosition(272, 204, 88, 24);
     ExtraHint := '';
     FontDesc := '#List';
-    Hint := '';
     Items.Add('green');
     Items.Add('red');
     Items.Add('yellow');
     Items.Add('blue');
     FocusItem := 0;
+    ParentShowHint := False;
     TabOrder := 7;
+    Hint := '';
   end;
 
   DirectoryEdit1 := TfpgDirectoryEdit.Create(self);
@@ -608,8 +629,9 @@ var
     Name := 'Label3';
     SetPosition(132, 28, 120, 15);
     FontDesc := '#Label1';
-    Hint := '';
+    ParentShowHint := False;
     Text := 'Directory of sakit';
+    Hint := '';
   end;
 
   {@VFD_BODY_END: Assistive}

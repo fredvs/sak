@@ -1,7 +1,7 @@
 object sak_demo: tmainfo
   visible = False
-  bounds_x = 18
-  bounds_y = 198
+  bounds_x = 347
+  bounds_y = 253
   bounds_cx = 653
   bounds_cy = 241
   container.frame.localprops = []
@@ -129,10 +129,10 @@ object sak_demo: tmainfo
     scrollbar.face.localprops = []
   end
   object tmemoedit1: tmemoedit
-    frame.sbhorz.pagesize = 1
-    frame.sbvert.pagesize = 1
     frame.localprops = [frl_colorclient]
     frame.localprops1 = []
+    frame.sbhorz.pagesize = 1
+    frame.sbvert.pagesize = 1
     taborder = 10
     bounds_x = 384
     bounds_y = 8
