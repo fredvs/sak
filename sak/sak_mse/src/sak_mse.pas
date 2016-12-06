@@ -404,9 +404,9 @@ if WhatName(sender) <> '' then
 function TSak.WhatKey(akey : keyty): msestring;
 var
 keyname : msestring = '' ;
-begin
+ begin
       case akey of
-        key_none : keyname := 'none'; 
+        key_none : keyname := 'none';
         key_Space : keyname := 'Space';               
         key_Exclam : keyname := 'Exclam'; 
         key_QuoteDbl : keyname := 'Quote Dbl'; 
