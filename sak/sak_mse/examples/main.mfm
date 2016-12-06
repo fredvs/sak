@@ -1,6 +1,6 @@
 object sak_demo: tmainfo
-  bounds_x = 320
-  bounds_y = 303
+  bounds_x = 242
+  bounds_y = 276
   bounds_cx = 655
   bounds_cy = 233
   container.frame.localprops = []
@@ -135,7 +135,7 @@ object sak_demo: tmainfo
     bounds_y = 8
     bounds_cx = 252
     bounds_cy = 117
-    value = 'The quick brown fox, jumps over the lazy dog... Use F12 key to read all. '
+    value = 'The quick brown fox, jumps over the lazy dog... Use F10 key to read all, F6 to read the word, F4 to read the sentense.'
     reffontheight = 15
   end
   object tmainmenuwidget1: tmainmenuwidget
