@@ -13,7 +13,7 @@ Included in the package:
 . Binary libraries for Linux 32/64, Windows, Mac and freeBSD.
 . espeak-data (multi language).
 
-There are compiled demos for Linux 32/64, Windows, Mac and freeBSD
+There are compiled demos for Linux 32/64, Windows, Mac and FreeBSD
 using fpGUI, msegui, LCL(Lazarus).
  =>https://github.com/fredvs/sak/releases/ 
 

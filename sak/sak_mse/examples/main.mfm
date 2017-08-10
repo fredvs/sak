@@ -1,6 +1,6 @@
 object sak_demo: tmainfo
   bounds_x = 242
-  bounds_y = 276
+  bounds_y = 277
   bounds_cx = 655
   bounds_cy = 233
   container.frame.localprops = []
